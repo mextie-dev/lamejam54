@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5kmdmxcymin2"]
+[gd_scene load_steps=7 format=3 uid="uid://b5kmdmxcymin2"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_07hk7"]
+[ext_resource type="Script" uid="uid://bh16622n4xldu" path="res://scripts/test_screen.gd" id="1_g8w70"]
 [ext_resource type="Texture2D" uid="uid://da8qxbx4516dk" path="res://icon.svg" id="2_fdtlm"]
 
 [sub_resource type="Animation" id="Animation_fdtlm"]
@@ -40,6 +41,7 @@ _data = {
 }
 
 [node name="TestScreen" type="Node2D"]
+script = ExtResource("1_g8w70")
 
 [node name="YellowPaper" type="Sprite2D" parent="."]
 position = Vector2(160, 142)
@@ -51,8 +53,18 @@ metadata/_edit_lock_ = true
 position = Vector2(123, 145)
 texture = ExtResource("2_fdtlm")
 
+[node name="Button" type="Button" parent="Icon"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = -65.0
+offset_top = -62.0
+offset_right = 64.0
+offset_bottom = 63.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_pdmja")
 }
 autoplay = "fade"
+
+[connection signal="pressed" from="Icon/Button" to="." method="_on_button_pressed"]

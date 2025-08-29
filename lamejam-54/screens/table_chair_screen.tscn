@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://cugyfi2x8r3nr"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_5gj8s"]
+[ext_resource type="Script" uid="uid://x8o4xjcm6q6h" path="res://scripts/table_chair_screen.gd" id="1_o6ngr"]
+[ext_resource type="Texture2D" uid="uid://oubnkfbb7edh" path="res://images/table_frames/table_fr1.png" id="2_47a2h"]
+[ext_resource type="Texture2D" uid="uid://dt7i7ms6biy2d" path="res://images/table_frames/table_fr2.png" id="3_o6ngr"]
+[ext_resource type="Texture2D" uid="uid://b3bo0s5cywe1o" path="res://images/table_frames/table_fr3.png" id="4_r44cb"]
+[ext_resource type="Texture2D" uid="uid://fbw8w1dft6" path="res://images/chair_frames/chair_f1.png" id="5_aelqi"]
+[ext_resource type="Texture2D" uid="uid://ujmpymv5ra0b" path="res://images/chair_frames/chair_f2.png" id="6_eg8jn"]
+[ext_resource type="Texture2D" uid="uid://c3hpvpdfo0ros" path="res://images/chair_frames/chair_f3.png" id="7_cgqr5"]
+[ext_resource type="PackedScene" uid="uid://cwwnfbx5ynkjk" path="res://OrObject.tscn" id="8_jfn2v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhcc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_47a2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o6ngr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r44cb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpcbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_aelqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eg8jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cgqr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_o6ngr"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r44cb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aelqi"]
+_data = {
+&"RESET": SubResource("Animation_r44cb"),
+&"fadeIn": SubResource("Animation_o6ngr")
+}
+
+[node name="TableChairScreen" type="Node2D"]
+script = ExtResource("1_o6ngr")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_5gj8s")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Table" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Table"]
+position = Vector2(65, 98)
+sprite_frames = SubResource("SpriteFrames_jhcc5")
+autoplay = "default"
+
+[node name="TableButton" type="Button" parent="Stuff/Table"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 18.0
+offset_top = 83.0
+offset_right = 112.0
+offset_bottom = 139.0
+
+[node name="Chair" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Chair"]
+position = Vector2(252, 107)
+sprite_frames = SubResource("SpriteFrames_lpcbj")
+autoplay = "default"
+
+[node name="ChairButton" type="Button" parent="Stuff/Chair"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 230.0
+offset_top = 64.0
+offset_right = 284.0
+offset_bottom = 150.0
+
+[node name="OrObject" parent="Stuff" instance=ExtResource("8_jfn2v")]
+position = Vector2(169, 114)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aelqi")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/Table/TableButton" to="." method="_on_table_button_pressed"]
+[connection signal="pressed" from="Stuff/Chair/ChairButton" to="." method="_on_chair_button_pressed"]
