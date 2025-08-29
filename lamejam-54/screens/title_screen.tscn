@@ -1,0 +1,286 @@
+[gd_scene load_steps=19 format=3 uid="uid://1m3cftdxaq86"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_grftj"]
+[ext_resource type="Script" uid="uid://brfy2pbw8gwmh" path="res://scripts/title_screen.gd" id="1_mvehq"]
+[ext_resource type="Texture2D" uid="uid://b8xykbvqh3nde" path="res://images/title_frames/title_hole_no_fr1.png" id="2_7jf2m"]
+[ext_resource type="Texture2D" uid="uid://s4e8vk5kjobv" path="res://images/title_frames/title_hole_no_fr2.png" id="3_dsjsu"]
+[ext_resource type="Texture2D" uid="uid://bfk4t5rskryeu" path="res://images/title_frames/title_hole_no_fr3.png" id="4_p1edy"]
+[ext_resource type="Texture2D" uid="uid://tjj7u0tsax24" path="res://images/ripped_hole_frames/ripped_hole_fr1.png" id="5_7jf2m"]
+[ext_resource type="Texture2D" uid="uid://17ag3yurgth6" path="res://images/ripped_hole_frames/ripped_hole_fr2.png" id="6_dsjsu"]
+[ext_resource type="Texture2D" uid="uid://c0brmpaa16mxc" path="res://images/ripped_hole_frames/ripped_hole_fr3.png" id="7_p1edy"]
+[ext_resource type="Texture2D" uid="uid://d0nr3tjbjlfak" path="res://images/enter_frames/enter_fr1.png" id="8_ghegn"]
+[ext_resource type="Texture2D" uid="uid://7cbcmp8qnvqo" path="res://images/enter_frames/enter_fr2.png" id="9_mvehq"]
+[ext_resource type="Texture2D" uid="uid://cm42rve2u4gmp" path="res://images/enter_frames/enter_fr3.png" id="10_mo0vk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jf2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7jf2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dsjsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p1edy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghegn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7jf2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dsjsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p1edy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fgfhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ghegn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mvehq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mo0vk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ghegn"]
+resource_name = "fadeInEverything"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.2666667, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/EnterHole:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 5.266667, 6.3333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff/EnterText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.766667, 7.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stuff/Buttons/Button:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mvehq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/EnterHole:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff/EnterText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stuff/Buttons/Button:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stuff:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mo0vk"]
+resource_name = "fadeOutEverything"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/Buttons/Button:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"endedAnim"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mo0vk"]
+_data = {
+&"RESET": SubResource("Animation_mvehq"),
+&"fadeInEverything": SubResource("Animation_ghegn"),
+&"fadeOutEverything": SubResource("Animation_mo0vk")
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_mvehq")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_grftj")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Title" type="Node2D" parent="Stuff"]
+position = Vector2(169, 69)
+
+[node name="TitleSprite" type="AnimatedSprite2D" parent="Stuff/Title"]
+sprite_frames = SubResource("SpriteFrames_7jf2m")
+autoplay = "default"
+frame_progress = 0.9010519
+
+[node name="EnterHole" type="Node2D" parent="Stuff"]
+position = Vector2(145, 80)
+
+[node name="HoleSprite" type="AnimatedSprite2D" parent="Stuff/EnterHole"]
+position = Vector2(-7.1525574e-07, 5.9604645e-07)
+scale = Vector2(0.45555556, 0.45555556)
+sprite_frames = SubResource("SpriteFrames_ghegn")
+autoplay = "default"
+frame_progress = 0.57636756
+
+[node name="EnterText" type="Node2D" parent="Stuff"]
+
+[node name="EnterSprite" type="AnimatedSprite2D" parent="Stuff/EnterText"]
+position = Vector2(230, 180)
+sprite_frames = SubResource("SpriteFrames_fgfhh")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Stuff"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mo0vk")
+}
+autoplay = "fadeInEverything"
+
+[node name="Buttons" type="Node2D" parent="Stuff"]
+
+[node name="Button" type="Button" parent="Stuff/Buttons"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 115.0
+offset_top = 50.0
+offset_right = 175.0
+offset_bottom = 108.0
+
+[connection signal="pressed" from="Stuff/Buttons/Button" to="." method="_on_button_pressed"]
