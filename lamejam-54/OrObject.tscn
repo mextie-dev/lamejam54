@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwwnfbx5ynkjk"]
+
+[ext_resource type="Texture2D" uid="uid://cfhptm4hecwec" path="res://images/or_frames/or_fr1.png" id="1_iqhq7"]
+[ext_resource type="Texture2D" uid="uid://b6myq2wehvfu6" path="res://images/or_frames/or_fr2.png" id="2_si2bk"]
+[ext_resource type="Texture2D" uid="uid://banhtvptgn742" path="res://images/or_frames/or_fr3.png" id="3_thwtm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiw63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iqhq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_si2bk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_thwtm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="OrObject" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_aiw63")
+autoplay = "default"

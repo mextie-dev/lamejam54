@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=6 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
 [ext_resource type="PackedScene" uid="uid://b5kmdmxcymin2" path="res://screens/test_screen.tscn" id="3_abpar"]
+[ext_resource type="PackedScene" uid="uid://dw83c0y6157qy" path="res://screens/ledge_door_screen.tscn" id="3_kt5tb"]
 [ext_resource type="Script" uid="uid://bh16622n4xldu" path="res://scripts/test_screen.gd" id="4_kt5tb"]
 
 [node name="ScreenManager" type="Node2D"]
@@ -10,8 +11,13 @@ script = ExtResource("1_4lin0")
 
 [node name="TitleScreen" parent="." instance=ExtResource("2_ewxhi")]
 
+[node name="LedgeDoorScreen" parent="." instance=ExtResource("3_kt5tb")]
+visible = false
+
 [node name="TestScreen" parent="." instance=ExtResource("3_abpar")]
 visible = false
 script = ExtResource("4_kt5tb")
 
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
+[connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]
+[connection signal="ledge_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_ledge_route"]
