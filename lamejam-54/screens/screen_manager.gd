@@ -6,6 +6,9 @@ extends Node2D
 @onready var table_chair_screen: Node2D = $TableChairScreen
 @onready var table_screen: Node2D = $TableScreen
 
+var run := false
+
+
 
 var upwards := 0
 var downwards := 0
@@ -22,22 +25,37 @@ func _ready() -> void:
 	pass
 
 func returnToStart():
-	title_screen.visible = true
-	$TitleScreen/Stuff/AnimationPlayer.play("fadeIn")
+	print(title_screen.process_mode)
+	ledge_door_screen.visible = false
+	table_chair_screen.visible = false
+	table_screen.visible = false
+	
 	title_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	title_screen.visible = true
+	$TitleScreen/Stuff/AnimationPlayer.play("fadeInEverything")
 	
 	
 	pass
 
 
 func _on_title_screen_start_game() -> void:
+	print("start game")
 	title_screen.visible = false
 	title_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_INHERIT
-	ledge_door_screen.visible = true
+	$LedgeDoorScreen/AnimationPlayer.play("fadeIn")
+	
+	if run:
+		ledge_door_screen.visible = true
+		print("sheeeeesh")
+	else: 
+		ledge_door_screen.visible = true
+		run = true
+		
 
 
 func _on_ledge_door_screen_door_route() -> void:
+	$TableChairScreen/AnimationPlayer.play("fadeIn")
 	ledge_door_screen.visible = false
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_chair_screen.process_mode = Node.PROCESS_MODE_INHERIT
@@ -55,6 +73,7 @@ func _on_ledge_door_screen_ledge_route() -> void:
 
 
 func _on_table_chair_screen_table_route() -> void:
+	$TableChairScreen/AnimationPlayer.play("fadeIn")
 	table_chair_screen.visible = false
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_INHERIT

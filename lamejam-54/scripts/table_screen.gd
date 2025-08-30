@@ -31,5 +31,5 @@ func exit():
 func _on_exit_paper_pressed() -> void:
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
-	self.visible = false
+	#self.visible = false
 	exit_paper_pressed.emit()
