@@ -1,10 +1,67 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxoo8r35p6n3f"]
+[gd_scene load_steps=14 format=3 uid="uid://bxoo8r35p6n3f"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_argxw"]
 [ext_resource type="Script" uid="uid://0syrx82rah7i" path="res://scripts/table_screen.gd" id="1_f122l"]
 [ext_resource type="Texture2D" uid="uid://bdojiehw6e8as" path="res://images/table_fr/table_fr1.png" id="2_8bf5r"]
 [ext_resource type="Texture2D" uid="uid://bi8k3fqd1dy18" path="res://images/table_fr/table_fr2.png" id="3_f122l"]
 [ext_resource type="Texture2D" uid="uid://w680aht4y5m4" path="res://images/table_fr/table_fr3.png" id="4_4alfq"]
+[ext_resource type="Texture2D" uid="uid://cfud3sy8jmi3o" path="res://images/table_fr/paperf1.png" id="6_im8wf"]
+[ext_resource type="Texture2D" uid="uid://bpyv5y6et6at3" path="res://images/table_fr/paperf2.png" id="7_8vsso"]
+[ext_resource type="Texture2D" uid="uid://ctbn63s0jo6" path="res://images/table_fr/paperf3.png" id="8_6uft1"]
+
+[sub_resource type="Animation" id="Animation_8bf5r"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f122l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4alfq"]
+_data = {
+&"RESET": SubResource("Animation_f122l"),
+&"fadeIn": SubResource("Animation_8bf5r")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nduyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_im8wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8vsso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6uft1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_didt0"]
 animations = [{
@@ -23,43 +80,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_8bf5r"]
-resource_name = "fadeIn"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TableFace:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_f122l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TableFace:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4alfq"]
-_data = {
-&"RESET": SubResource("Animation_f122l"),
-&"fadeIn": SubResource("Animation_8bf5r")
-}
-
 [node name="TableScreen" type="Node2D"]
 script = ExtResource("1_f122l")
 
@@ -72,23 +92,45 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 120)
 
-[node name="TableFace" type="Node2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4alfq")
+}
+autoplay = "fadeIn"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TableFace"]
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Paper" type="Node2D" parent="Stuff"]
+visible = false
+
+[node name="ExitPaper" type="Button" parent="Stuff/Paper"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 81.0
+offset_top = 24.0
+offset_right = 247.0
+offset_bottom = 203.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Paper"]
+position = Vector2(160, 116)
+sprite_frames = SubResource("SpriteFrames_nduyt")
+autoplay = "default"
+
+[node name="TableFace" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/TableFace"]
 position = Vector2(156, 120)
 sprite_frames = SubResource("SpriteFrames_didt0")
 autoplay = "default"
 
-[node name="PaperButton" type="Button" parent="TableFace"]
+[node name="PaperButton" type="Button" parent="Stuff/TableFace"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 offset_left = 133.0
 offset_top = 45.0
 offset_right = 182.0
 offset_bottom = 104.0
+metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4alfq")
-}
-autoplay = "fadeIn"
+[connection signal="pressed" from="Stuff/Paper/ExitPaper" to="." method="_on_exit_paper_pressed"]
+[connection signal="pressed" from="Stuff/TableFace/PaperButton" to="." method="_on_paper_button_pressed"]

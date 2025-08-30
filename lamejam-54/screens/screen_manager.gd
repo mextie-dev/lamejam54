@@ -16,6 +16,15 @@ func _ready() -> void:
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	table_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	
+	pass
+
+func returnToStart():
+	title_screen.visible = true
+	$TitleScreen/Stuff/AnimationPlayer.play("fadeIn")
+	title_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	
 	pass
@@ -43,3 +52,10 @@ func _on_ledge_door_screen_ledge_route() -> void:
 	test_screen.visible = true
 	upwards += 1
 	
+
+
+func _on_table_chair_screen_table_route() -> void:
+	table_chair_screen.visible = false
+	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	table_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	table_screen.visible = true

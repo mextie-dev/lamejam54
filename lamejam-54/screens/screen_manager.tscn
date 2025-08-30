@@ -27,3 +27,7 @@ visible = false
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]
 [connection signal="ledge_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_ledge_route"]
+[connection signal="table_route" from="TableChairScreen" to="." method="_on_table_chair_screen_table_route"]
+[connection signal="exit_paper_pressed" from="TableScreen" to="." method="returnToStart"]
+
+[editable path="TitleScreen"]
