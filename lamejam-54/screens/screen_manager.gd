@@ -29,7 +29,8 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	print(hasKnife)
+	#print(hasKnife)
+	pass
 
 
 

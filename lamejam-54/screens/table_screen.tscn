@@ -157,7 +157,7 @@ visible = false
 position = Vector2(156, 120)
 sprite_frames = SubResource("SpriteFrames_1ub03")
 autoplay = "default"
-frame_progress = 0.38157254
+frame_progress = 0.1876431
 
 [node name="KnifeButton" type="Button" parent="Stuff/TableFace"]
 modulate = Color(1, 1, 1, 0)

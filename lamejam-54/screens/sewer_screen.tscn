@@ -1,8 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5kkkemnxut4c"]
+[gd_scene load_steps=11 format=3 uid="uid://b5kkkemnxut4c"]
 
+[ext_resource type="Script" uid="uid://c18tf6nacwdhp" path="res://screens/sewer_screen.gd" id="1_f3yfd"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_yba7n"]
+[ext_resource type="Texture2D" uid="uid://b7uqs0lkq243c" path="res://images/sewer_frames/sewer_fr1.png" id="2_ggw4o"]
+[ext_resource type="Texture2D" uid="uid://dgct5wsivp64s" path="res://images/sewer_frames/sewer_fr2.png" id="3_cj22w"]
+[ext_resource type="Texture2D" uid="uid://dhs61877641cf" path="res://images/sewer_frames/sewer_fr3.png" id="4_f3yfd"]
+[ext_resource type="PackedScene" uid="uid://cs2lwfn62oi11" path="res://screens/lock_screen.tscn" id="6_pxtad"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pxtad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ggw4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cj22w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f3yfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ggw4o"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ec8rn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cj22w"]
+_data = {
+&"RESET": SubResource("Animation_ec8rn"),
+&"fadeIn": SubResource("Animation_ggw4o")
+}
 
 [node name="SewerScreen" type="Node2D"]
+script = ExtResource("1_f3yfd")
 
 [node name="YellowPaper" type="Sprite2D" parent="."]
 position = Vector2(160, 142)
@@ -17,6 +77,46 @@ offset = Vector2(160, 120)
 anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0
-text = "sewerscreen"
+text = "sewerScreen
+"
 
 [node name="Stuff" type="Node2D" parent="."]
+
+[node name="SewerBackground" type="Node2D" parent="Stuff"]
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/SewerBackground"]
+position = Vector2(160, 120)
+sprite_frames = SubResource("SpriteFrames_pxtad")
+autoplay = "default"
+
+[node name="Door" type="Node2D" parent="Stuff"]
+
+[node name="LockedDoorButton" type="Button" parent="Stuff/Door"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 29.0
+offset_top = 94.0
+offset_right = 72.0
+offset_bottom = 143.0
+
+[node name="UnlockedDoorButton" type="Button" parent="Stuff/Door"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 29.0
+offset_top = 94.0
+offset_right = 72.0
+offset_bottom = 143.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cj22w")
+}
+
+[node name="LockScreen" parent="." instance=ExtResource("6_pxtad")]
+visible = false
+
+[connection signal="pressed" from="Stuff/Door/LockedDoorButton" to="." method="_on_lockeddoor_button_pressed"]
+[connection signal="pressed" from="Stuff/Door/UnlockedDoorButton" to="." method="_on_unlocked_door_button_pressed"]
+[connection signal="right_code" from="LockScreen" to="." method="enteredCode"]
