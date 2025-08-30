@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5kkkemnxut4c"]
+[gd_scene load_steps=19 format=3 uid="uid://b5kkkemnxut4c"]
 
 [ext_resource type="Script" uid="uid://c18tf6nacwdhp" path="res://screens/sewer_screen.gd" id="1_f3yfd"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_yba7n"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://s0ew8dnflci2" path="res://images/ladder_frames/ladder_fr1.png" id="6_q7b11"]
 [ext_resource type="Texture2D" uid="uid://djfbt62agls2" path="res://images/ladder_frames/ladder_fr2.png" id="7_ssqmw"]
 [ext_resource type="Texture2D" uid="uid://c4vj7xw826v5h" path="res://images/ladder_frames/ladder_fr3.png" id="8_kkv88"]
+[ext_resource type="Texture2D" uid="uid://c2lng3rbhf21g" path="res://images/vent_fr/vent_fr1.png" id="9_7yvx4"]
+[ext_resource type="Texture2D" uid="uid://b04lnnxrn8cnx" path="res://images/vent_fr/vent_fr2.png" id="10_71evo"]
+[ext_resource type="Texture2D" uid="uid://cdqg27tj8kpul" path="res://images/vent_fr/vent_fr3.png" id="11_ggiba"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pxtad"]
 animations = [{
@@ -44,21 +47,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_ggw4o"]
-resource_name = "fadeIn"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Stuff:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwg4g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7yvx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_71evo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ggiba")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_ec8rn"]
 length = 0.001
@@ -73,6 +77,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ggw4o"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cj22w"]
@@ -94,6 +114,7 @@ metadata/_edit_lock_ = true
 offset = Vector2(160, 120)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0
@@ -145,6 +166,23 @@ offset_top = 84.0
 offset_right = 323.0
 offset_bottom = 178.0
 
+[node name="VentExit" type="Node2D" parent="Stuff"]
+rotation = -0.61086524
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/VentExit"]
+position = Vector2(-16.230087, 66.76514)
+scale = Vector2(0.31, 0.31)
+sprite_frames = SubResource("SpriteFrames_jwg4g")
+autoplay = "default"
+
+[node name="VentExitButton" type="Button" parent="Stuff/VentExit"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = -27.898628
+offset_top = 53.005333
+offset_right = -3.2533073
+offset_bottom = 79.23907
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_cj22w")
@@ -157,4 +195,5 @@ visible = false
 [connection signal="pressed" from="Stuff/Door/LockedDoorButton" to="." method="_on_lockeddoor_button_pressed"]
 [connection signal="pressed" from="Stuff/Door/UnlockedDoorButton" to="." method="_on_unlocked_door_button_pressed"]
 [connection signal="pressed" from="Stuff/Ladder/LadderButton" to="." method="_on_ladder_button_pressed"]
+[connection signal="pressed" from="Stuff/VentExit/VentExitButton" to="." method="_on_vent_exit_button_pressed"]
 [connection signal="right_code" from="LockScreen" to="." method="enteredCode"]

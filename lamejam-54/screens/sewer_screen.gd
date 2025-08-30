@@ -7,6 +7,7 @@ extends Node2D
 
 signal lockeddoor_route()
 signal ladder_route()
+signal ventexit_route()
 
 func _ready() -> void:
 	animation_player.play("fadeIn")
@@ -33,3 +34,10 @@ func exit():
 
 func _on_unlocked_door_button_pressed() -> void:
 	print("unlocked door")
+
+
+func _on_vent_exit_button_pressed() -> void:
+	animation_player.play_backwards("fadeIn")
+	await get_tree().create_timer(2).timeout
+	print("worked")
+	ventexit_route.emit()

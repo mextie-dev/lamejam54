@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccpjkpw4068ko"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_uu6m3"]
+
+[node name="PlaneCutsceneScreen" type="Node2D"]
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_uu6m3")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "planescreen
+"

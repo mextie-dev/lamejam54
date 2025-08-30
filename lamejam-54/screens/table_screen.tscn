@@ -168,6 +168,7 @@ offset_right = 167.0
 offset_bottom = 175.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0

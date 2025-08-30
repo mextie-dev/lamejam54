@@ -11,7 +11,7 @@ extends Node2D
 @onready var car_cutscene_screen: Node2D = $CarCutsceneScreen
 @onready var airport_entrance_screen: Node2D = $AirportEntranceScreen
 @onready var airport_screen: Node2D = $AirportScreen
-
+@onready var bathroom_screen: Node2D = $BathroomScreen
 
 
 
@@ -35,6 +35,7 @@ func _ready() -> void:
 	car_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	airport_entrance_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	bathroom_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
@@ -46,18 +47,25 @@ func _process(delta: float) -> void:
 
 
 func returnToStart():
-	print(title_screen.process_mode)
-	ledge_door_screen.visible = false
-	table_chair_screen.visible = false
-	table_screen.visible = false
-	
-	title_screen.process_mode = Node.PROCESS_MODE_INHERIT
-	title_screen.visible = true
-	$TitleScreen/Stuff/AnimationPlayer.play("fadeInEverything")
+	#print(title_screen.process_mode)
+	#ledge_door_screen.visible = false
+	#table_chair_screen.visible = false
+	#table_screen.visible = false
+	#
+	#title_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	#title_screen.visible = true
+	#$TitleScreen/Stuff/AnimationPlayer.play("fadeInEverything")
 	
 	
 	pass
 
+func _on_exit_paper_button_pressed():
+	$TableChairScreen/AnimationPlayer.play("fadeIn")
+	table_screen.visible = false
+	table_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	table_chair_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	table_chair_screen.visible = true
+	downwards += 1
 
 func _on_title_screen_start_game() -> void:
 	print("start game")
@@ -162,3 +170,28 @@ func _on_airport_entrance_screen_airport_route() -> void:
 	airport_entrance_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	airport_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	airport_screen.visible = true
+
+
+func _on_bathroom_screen_toilet_route() -> void:
+	$SewerScreen/AnimationPlayer.play("fadeIn")
+	bathroom_screen.visible = false
+	bathroom_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	sewer_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	sewer_screen.visible = true
+
+
+func _on_airport_screen_bathroomdoor_route() -> void:
+	$BathroomScreen/AnimationPlayer.play("fadeIn")
+	airport_screen.visible = false
+	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	bathroom_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	bathroom_screen.visible = true
+
+
+func _on_sewer_screen_ventexit_route() -> void:
+	$TableChairScreen/AnimationPlayer.play("fadeIn")
+	sewer_screen.visible = false
+	sewer_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	table_chair_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	table_chair_screen.visible = true
+	downwards += 1

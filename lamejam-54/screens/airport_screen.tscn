@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bq16jm7e1k14w"]
+[gd_scene load_steps=15 format=3 uid="uid://bq16jm7e1k14w"]
 
 [ext_resource type="Script" uid="uid://cla8r428elpi2" path="res://scripts/airport_screen.gd" id="1_0vk4t"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_yed70"]
@@ -47,9 +47,37 @@ animations = [{
 [sub_resource type="Animation" id="Animation_yed70"]
 resource_name = "fadeIn"
 length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0vk4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vrdc"]
 _data = {
+&"RESET": SubResource("Animation_0vk4t"),
 &"fadeIn": SubResource("Animation_yed70")
 }
 
@@ -84,6 +112,7 @@ sprite_frames = SubResource("SpriteFrames_ti8pb")
 autoplay = "default"
 
 [node name="BathroomDoorButton" type="Button" parent="Stuff/BathroomDoor"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 offset_left = 32.0
 offset_top = 63.0
@@ -98,6 +127,7 @@ sprite_frames = SubResource("SpriteFrames_3td4j")
 autoplay = "default"
 
 [node name="PlaneButton" type="Button" parent="Stuff/Plane"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 offset_left = 214.0
 offset_top = 80.0
@@ -108,6 +138,7 @@ offset_bottom = 151.0
 libraries = {
 &"": SubResource("AnimationLibrary_2vrdc")
 }
+autoplay = "fadeIn"
 
 [connection signal="pressed" from="Stuff/BathroomDoor/BathroomDoorButton" to="." method="_on_bathroom_door_button_pressed"]
 [connection signal="pressed" from="Stuff/Plane/PlaneButton" to="." method="_on_plane_button_pressed"]
