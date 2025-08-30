@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxoo8r35p6n3f"]
+[gd_scene load_steps=18 format=3 uid="uid://bxoo8r35p6n3f"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_argxw"]
 [ext_resource type="Script" uid="uid://0syrx82rah7i" path="res://scripts/table_screen.gd" id="1_f122l"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cfud3sy8jmi3o" path="res://images/table_fr/paperf1.png" id="6_im8wf"]
 [ext_resource type="Texture2D" uid="uid://bpyv5y6et6at3" path="res://images/table_fr/paperf2.png" id="7_8vsso"]
 [ext_resource type="Texture2D" uid="uid://ctbn63s0jo6" path="res://images/table_fr/paperf3.png" id="8_6uft1"]
+[ext_resource type="Texture2D" uid="uid://dggn4vfkh474c" path="res://images/table_fr/table_noknife_fr1.png" id="9_nduyt"]
+[ext_resource type="Texture2D" uid="uid://c4dtwbgpj7x21" path="res://images/table_fr/table_noknife_fr2.png" id="10_bg41e"]
+[ext_resource type="Texture2D" uid="uid://cnxwj7leydjim" path="res://images/table_fr/table_noknife_fr3.png" id="11_r5n4s"]
 
 [sub_resource type="Animation" id="Animation_f122l"]
 length = 0.001
@@ -80,6 +83,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ub03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_nduyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bg41e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_r5n4s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="TableScreen" type="Node2D"]
 script = ExtResource("1_f122l")
 
@@ -132,6 +152,21 @@ offset_right = 182.0
 offset_bottom = 104.0
 metadata/_edit_use_anchors_ = true
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Stuff/TableFace"]
+visible = false
+position = Vector2(156, 120)
+sprite_frames = SubResource("SpriteFrames_1ub03")
+autoplay = "default"
+frame_progress = 0.38157254
+
+[node name="KnifeButton" type="Button" parent="Stuff/TableFace"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 132.0
+offset_top = 109.0
+offset_right = 167.0
+offset_bottom = 175.0
+
 [node name="Label" type="Label" parent="."]
 anchors_preset = -1
 offset_right = 40.0
@@ -140,3 +175,4 @@ text = "tablechairscreen"
 
 [connection signal="pressed" from="Stuff/Paper/ExitPaper" to="." method="_on_exit_paper_pressed"]
 [connection signal="pressed" from="Stuff/TableFace/PaperButton" to="." method="_on_paper_button_pressed"]
+[connection signal="pressed" from="Stuff/TableFace/KnifeButton" to="." method="_on_knife_button_pressed"]

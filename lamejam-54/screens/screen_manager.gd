@@ -10,6 +10,7 @@ extends Node2D
 
 var run := false
 
+var hasKnife := false
 
 
 var upwards := 0
@@ -26,6 +27,11 @@ func _ready() -> void:
 	
 	
 	pass
+
+func _process(delta: float) -> void:
+	print(hasKnife)
+
+
 
 func returnToStart():
 	print(title_screen.process_mode)
@@ -79,6 +85,7 @@ func _on_ledge_door_screen_ledge_route() -> void:
 func _on_table_chair_screen_table_route() -> void:
 	$TableScreen/AnimationPlayer.play("fadeIn")
 	table_chair_screen.visible = false
+	table_screen.restart_room()
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	table_screen.visible = true
@@ -98,3 +105,7 @@ func _on_chair_screen_vent_route() -> void:
 	chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	test_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	test_screen.visible = true
+
+
+func _on_table_screen_got_knife() -> void:
+	hasKnife = true

@@ -38,6 +38,7 @@ visible = false
 [connection signal="chair_route" from="TableChairScreen" to="." method="_on_table_chair_screen_chair_route"]
 [connection signal="table_route" from="TableChairScreen" to="." method="_on_table_chair_screen_table_route"]
 [connection signal="exit_paper_pressed" from="TableScreen" to="." method="returnToStart"]
+[connection signal="got_knife" from="TableScreen" to="." method="_on_table_screen_got_knife"]
 [connection signal="vent_route" from="ChairScreen" to="." method="_on_chair_screen_vent_route"]
 
 [editable path="TitleScreen"]

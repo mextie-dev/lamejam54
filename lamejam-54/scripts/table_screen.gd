@@ -7,11 +7,25 @@ signal paper_route()
 @onready var exit_paper: Button = $Stuff/Paper/ExitPaper
 @onready var paper: Node2D = $Stuff/Paper
 
+@onready var knife_button: Button = $Stuff/TableFace/KnifeButton
+
+@onready var table_knife: AnimatedSprite2D = $Stuff/TableFace/AnimatedSprite2D
+@onready var table_no_knife: AnimatedSprite2D = $Stuff/TableFace/AnimatedSprite2D2
+
+
 signal exit_paper_pressed()
+signal got_knife()
 
 func _ready() -> void:
 	exit_paper.disabled = true
 	animation_player.play("fadeIn")
+	
+func restart_room():
+	paper.visible = false
+	table_face.visible = true
+	exit_paper.disabled = true
+	animation_player.play("fadeIn")
+
 
 func _on_paper_button_pressed() -> void:
 	table_face.visible = false
@@ -33,3 +47,10 @@ func _on_exit_paper_pressed() -> void:
 	await get_tree().create_timer(2).timeout
 	#self.visible = false
 	exit_paper_pressed.emit()
+
+
+func _on_knife_button_pressed() -> void:
+	table_knife.visible = false
+	table_no_knife.visible = true
+	knife_button.disabled = true
+	got_knife.emit()

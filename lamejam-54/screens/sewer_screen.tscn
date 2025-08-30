@@ -18,3 +18,5 @@ anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "sewerscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
