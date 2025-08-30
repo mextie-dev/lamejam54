@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://bq16jm7e1k14w"]
+
+[ext_resource type="Script" uid="uid://cla8r428elpi2" path="res://scripts/airport_screen.gd" id="1_0vk4t"]
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_yed70"]
+[ext_resource type="PackedScene" uid="uid://cwwnfbx5ynkjk" path="res://OrObject.tscn" id="2_2vrdc"]
+[ext_resource type="Texture2D" uid="uid://cbece0i26a86f" path="res://images/bathroomdoor_frames/bd_fr1.png" id="3_3td4j"]
+[ext_resource type="Texture2D" uid="uid://bg2axrpw61xon" path="res://images/bathroomdoor_frames/bd_fr2.png" id="4_mfa7o"]
+[ext_resource type="Texture2D" uid="uid://bidlkgl6l5ylv" path="res://images/bathroomdoor_frames/bd_fr3.png" id="5_uvey4"]
+[ext_resource type="Texture2D" uid="uid://dpnveijmfi648" path="res://images/plane_frames/plane_fr1.png" id="6_ti8pb"]
+[ext_resource type="Texture2D" uid="uid://de53hynkgicgq" path="res://images/plane_frames/plane_fr2.png" id="7_0vk4t"]
+[ext_resource type="Texture2D" uid="uid://qsbxtxqljn7u" path="res://images/plane_frames/plane_fr3.png" id="8_ao2rl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ti8pb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3td4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mfa7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uvey4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3td4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ti8pb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0vk4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ao2rl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_yed70"]
+resource_name = "fadeIn"
+length = 1.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vrdc"]
+_data = {
+&"fadeIn": SubResource("Animation_yed70")
+}
+
+[node name="AirportScreen" type="Node2D"]
+script = ExtResource("1_0vk4t")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_yed70")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "airportscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="OrObject" parent="Stuff" instance=ExtResource("2_2vrdc")]
+position = Vector2(169, 114)
+
+[node name="BathroomDoor" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/BathroomDoor"]
+position = Vector2(68, 106)
+sprite_frames = SubResource("SpriteFrames_ti8pb")
+autoplay = "default"
+
+[node name="BathroomDoorButton" type="Button" parent="Stuff/BathroomDoor"]
+anchors_preset = -1
+offset_left = 32.0
+offset_top = 63.0
+offset_right = 110.0
+offset_bottom = 156.0
+
+[node name="Plane" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Plane"]
+position = Vector2(249, 104)
+sprite_frames = SubResource("SpriteFrames_3td4j")
+autoplay = "default"
+
+[node name="PlaneButton" type="Button" parent="Stuff/Plane"]
+anchors_preset = -1
+offset_left = 214.0
+offset_top = 80.0
+offset_right = 296.0
+offset_bottom = 151.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2vrdc")
+}
+
+[connection signal="pressed" from="Stuff/BathroomDoor/BathroomDoorButton" to="." method="_on_bathroom_door_button_pressed"]
+[connection signal="pressed" from="Stuff/Plane/PlaneButton" to="." method="_on_plane_button_pressed"]

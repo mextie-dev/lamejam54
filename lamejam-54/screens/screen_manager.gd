@@ -7,6 +7,13 @@ extends Node2D
 @onready var table_screen: Node2D = $TableScreen
 @onready var chair_screen: Node2D = $ChairScreen
 @onready var parking_lot_screen: Node2D = $ParkingLotScreen
+@onready var sewer_screen: Node2D = $SewerScreen
+@onready var car_cutscene_screen: Node2D = $CarCutsceneScreen
+@onready var airport_entrance_screen: Node2D = $AirportEntranceScreen
+@onready var airport_screen: Node2D = $AirportScreen
+
+
+
 
 var run := false
 
@@ -24,6 +31,10 @@ func _ready() -> void:
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	parking_lot_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	sewer_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	car_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	airport_entrance_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
@@ -101,12 +112,53 @@ func _on_table_chair_screen_chair_route() -> void:
 
 
 func _on_chair_screen_vent_route() -> void:
-	#$Chair/AnimationPlayer.play("fadeIn")
+	$SewerScreen/AnimationPlayer.play("fadeIn")
 	chair_screen.visible = false
 	chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
-	test_screen.process_mode = Node.PROCESS_MODE_INHERIT
-	test_screen.visible = true
+	sewer_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	sewer_screen.visible = true
 
 
 func _on_table_screen_got_knife() -> void:
 	hasKnife = true
+
+
+func _on_sewer_screen_ladder_route() -> void:
+	$ParkingLotScreen/AnimationPlayer.play("fadeIn")
+	sewer_screen.visible = false
+	sewer_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	parking_lot_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	parking_lot_screen.visible = true
+	upwards += 1
+
+
+func _on_parking_lot_screen_manhole_route() -> void:
+	$SewerScreen/AnimationPlayer.play("fadeIn")
+	parking_lot_screen.visible = false
+	parking_lot_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	sewer_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	sewer_screen.visible = true
+
+
+func _on_parking_lot_screen_car_route() -> void:
+	$CarCutsceneScreen/AnimationPlayer.play("moveCar")
+	parking_lot_screen.visible = false
+	parking_lot_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	car_cutscene_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	car_cutscene_screen.visible = true
+
+
+func _on_car_cutscene_screen_exit_cutscene() -> void:
+	$AirportEntranceScreen/AnimationPlayer.play("fadeIn")
+	car_cutscene_screen.visible = false
+	car_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	airport_entrance_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	airport_entrance_screen.visible = true
+
+
+func _on_airport_entrance_screen_airport_route() -> void:
+	$AirportScreen/AnimationPlayer.play("fadeIn")
+	airport_entrance_screen.visible = false
+	airport_entrance_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	airport_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	airport_screen.visible = true

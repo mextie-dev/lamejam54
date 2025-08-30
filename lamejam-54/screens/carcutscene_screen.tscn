@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds4gsgk0g6kua"]
+
+[ext_resource type="Script" uid="uid://chkx4swrc23ft" path="res://scripts/carcutscene_screen.gd" id="1_i5ii7"]
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="2_ibulm"]
+[ext_resource type="Texture2D" uid="uid://bb77plgvpmoyw" path="res://images/car_Fr/car_fr1.png" id="3_odqqo"]
+[ext_resource type="Texture2D" uid="uid://dgibhdssbykjs" path="res://images/car_Fr/car_fr2.png" id="4_xg4vf"]
+[ext_resource type="Texture2D" uid="uid://bsgjfvkix7wl4" path="res://images/car_Fr/car_fr3.png" id="5_tjyem"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xxkj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_odqqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xg4vf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tjyem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_i5ii7"]
+resource_name = "moveCar"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(700, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ibulm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odqqo"]
+_data = {
+&"RESET": SubResource("Animation_ibulm"),
+&"moveCar": SubResource("Animation_i5ii7")
+}
+
+[node name="CarCutsceneScreen" type="Node2D"]
+script = ExtResource("1_i5ii7")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("2_ibulm")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "carcutscene
+"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Car" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Car"]
+position = Vector2(-196, 108)
+scale = Vector2(0.79499996, 0.91125005)
+sprite_frames = SubResource("SpriteFrames_3xxkj")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_odqqo")
+}
+autoplay = "moveCar"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

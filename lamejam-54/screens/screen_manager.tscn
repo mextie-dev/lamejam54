@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=13 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bxoo8r35p6n3f" path="res://screens/table_screen.tscn" id="6_vnfss"]
 [ext_resource type="PackedScene" uid="uid://bsmno0f4ce04b" path="res://screens/parking_lot_screen.tscn" id="7_sckaq"]
 [ext_resource type="PackedScene" uid="uid://cc1f2oi60auu4" path="res://screens/chair_screen.tscn" id="8_1n0v5"]
+[ext_resource type="PackedScene" uid="uid://b5kkkemnxut4c" path="res://screens/sewer_screen.tscn" id="9_1n0v5"]
+[ext_resource type="PackedScene" uid="uid://ds4gsgk0g6kua" path="res://screens/carcutscene_screen.tscn" id="10_d2784"]
+[ext_resource type="PackedScene" uid="uid://cjbpuj050p8lr" path="res://screens/airport_entrance_screen.tscn" id="11_2ngdx"]
+[ext_resource type="PackedScene" uid="uid://bq16jm7e1k14w" path="res://screens/airport_screen.tscn" id="12_tx0jl"]
 
 [node name="ScreenManager" type="Node2D"]
 script = ExtResource("1_4lin0")
@@ -32,6 +36,18 @@ visible = false
 [node name="ChairScreen" parent="." instance=ExtResource("8_1n0v5")]
 visible = false
 
+[node name="SewerScreen" parent="." instance=ExtResource("9_1n0v5")]
+visible = false
+
+[node name="CarCutsceneScreen" parent="." instance=ExtResource("10_d2784")]
+visible = false
+
+[node name="AirportEntranceScreen" parent="." instance=ExtResource("11_2ngdx")]
+visible = false
+
+[node name="AirportScreen" parent="." instance=ExtResource("12_tx0jl")]
+visible = false
+
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]
 [connection signal="ledge_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_ledge_route"]
@@ -39,6 +55,11 @@ visible = false
 [connection signal="table_route" from="TableChairScreen" to="." method="_on_table_chair_screen_table_route"]
 [connection signal="exit_paper_pressed" from="TableScreen" to="." method="returnToStart"]
 [connection signal="got_knife" from="TableScreen" to="." method="_on_table_screen_got_knife"]
+[connection signal="car_route" from="ParkingLotScreen" to="." method="_on_parking_lot_screen_car_route"]
+[connection signal="manhole_route" from="ParkingLotScreen" to="." method="_on_parking_lot_screen_manhole_route"]
 [connection signal="vent_route" from="ChairScreen" to="." method="_on_chair_screen_vent_route"]
+[connection signal="ladder_route" from="SewerScreen" to="." method="_on_sewer_screen_ladder_route"]
+[connection signal="exit_cutscene" from="CarCutsceneScreen" to="." method="_on_car_cutscene_screen_exit_cutscene"]
+[connection signal="airport_route" from="AirportEntranceScreen" to="." method="_on_airport_entrance_screen_airport_route"]
 
 [editable path="TitleScreen"]

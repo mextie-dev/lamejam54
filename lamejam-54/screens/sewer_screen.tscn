@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5kkkemnxut4c"]
+[gd_scene load_steps=15 format=3 uid="uid://b5kkkemnxut4c"]
 
 [ext_resource type="Script" uid="uid://c18tf6nacwdhp" path="res://screens/sewer_screen.gd" id="1_f3yfd"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_yba7n"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dgct5wsivp64s" path="res://images/sewer_frames/sewer_fr2.png" id="3_cj22w"]
 [ext_resource type="Texture2D" uid="uid://dhs61877641cf" path="res://images/sewer_frames/sewer_fr3.png" id="4_f3yfd"]
 [ext_resource type="PackedScene" uid="uid://cs2lwfn62oi11" path="res://screens/lock_screen.tscn" id="6_pxtad"]
+[ext_resource type="Texture2D" uid="uid://s0ew8dnflci2" path="res://images/ladder_frames/ladder_fr1.png" id="6_q7b11"]
+[ext_resource type="Texture2D" uid="uid://djfbt62agls2" path="res://images/ladder_frames/ladder_fr2.png" id="7_ssqmw"]
+[ext_resource type="Texture2D" uid="uid://c4vj7xw826v5h" path="res://images/ladder_frames/ladder_fr3.png" id="8_kkv88"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pxtad"]
 animations = [{
@@ -18,6 +21,23 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_f3yfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7yvx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_q7b11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ssqmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kkv88")
 }],
 "loop": true,
 "name": &"default",
@@ -109,14 +129,32 @@ offset_top = 94.0
 offset_right = 72.0
 offset_bottom = 143.0
 
+[node name="Ladder" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Ladder"]
+position = Vector2(296, 126)
+scale = Vector2(0.72, 1)
+sprite_frames = SubResource("SpriteFrames_7yvx4")
+autoplay = "default"
+
+[node name="LadderButton" type="Button" parent="Stuff/Ladder"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 268.0
+offset_top = 84.0
+offset_right = 323.0
+offset_bottom = 178.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_cj22w")
 }
+autoplay = "fadeIn"
 
 [node name="LockScreen" parent="." instance=ExtResource("6_pxtad")]
 visible = false
 
 [connection signal="pressed" from="Stuff/Door/LockedDoorButton" to="." method="_on_lockeddoor_button_pressed"]
 [connection signal="pressed" from="Stuff/Door/UnlockedDoorButton" to="." method="_on_unlocked_door_button_pressed"]
+[connection signal="pressed" from="Stuff/Ladder/LadderButton" to="." method="_on_ladder_button_pressed"]
 [connection signal="right_code" from="LockScreen" to="." method="enteredCode"]
