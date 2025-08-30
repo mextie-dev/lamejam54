@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc1f2oi60auu4"]
+
+[ext_resource type="Script" uid="uid://dplffthaweybi" path="res://screens/chair_screen.gd" id="1_h861x"]
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_u21u3"]
+[ext_resource type="Texture2D" uid="uid://c2lng3rbhf21g" path="res://images/vent_fr/vent_fr1.png" id="2_y0qpp"]
+[ext_resource type="Texture2D" uid="uid://b04lnnxrn8cnx" path="res://images/vent_fr/vent_fr2.png" id="3_h861x"]
+[ext_resource type="Texture2D" uid="uid://cdqg27tj8kpul" path="res://images/vent_fr/vent_fr3.png" id="4_hb7wk"]
+
+[sub_resource type="Animation" id="Animation_h861x"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hb7wk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d3qug"]
+_data = {
+&"RESET": SubResource("Animation_hb7wk"),
+&"fadeIn": SubResource("Animation_h861x")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d3qug"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y0qpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h861x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hb7wk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ChairScreen" type="Node2D"]
+script = ExtResource("1_h861x")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_u21u3")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "chairscreen"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_d3qug")
+}
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Vent" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Vent"]
+position = Vector2(157, 114)
+scale = Vector2(1.71, 1.71)
+sprite_frames = SubResource("SpriteFrames_d3qug")
+autoplay = "default"
+
+[node name="VentButton" type="Button" parent="Stuff/Vent"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 87.0
+offset_top = 41.0
+offset_right = 238.0
+offset_bottom = 185.0
+
+[connection signal="pressed" from="Stuff/Vent/VentButton" to="." method="_on_vent_button_pressed"]

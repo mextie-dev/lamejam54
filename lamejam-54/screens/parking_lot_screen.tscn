@@ -1,0 +1,145 @@
+[gd_scene load_steps=15 format=3 uid="uid://bsmno0f4ce04b"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_bl7rf"]
+[ext_resource type="Script" uid="uid://dwlok5ey73b7j" path="res://scripts/parking_lot_screen.gd" id="1_vpyfl"]
+[ext_resource type="Texture2D" uid="uid://bb77plgvpmoyw" path="res://images/car_Fr/car_fr1.png" id="2_oyqcb"]
+[ext_resource type="Texture2D" uid="uid://dgibhdssbykjs" path="res://images/car_Fr/car_fr2.png" id="3_elhnm"]
+[ext_resource type="Texture2D" uid="uid://bsgjfvkix7wl4" path="res://images/car_Fr/car_fr3.png" id="4_l7ngi"]
+[ext_resource type="PackedScene" uid="uid://cwwnfbx5ynkjk" path="res://OrObject.tscn" id="5_3w0hm"]
+[ext_resource type="Texture2D" uid="uid://dra3ufdg3yndy" path="res://images/manhole_fr/manhole_f1.png" id="6_3w0hm"]
+[ext_resource type="Texture2D" uid="uid://bbuls13n0lxd4" path="res://images/manhole_fr/manhole_f2.png" id="7_vpyfl"]
+[ext_resource type="Texture2D" uid="uid://3ku63pt22icr" path="res://images/manhole_fr/manhole_f3.png" id="8_xrvbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpyfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oyqcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_elhnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l7ngi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qajs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_3w0hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vpyfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xrvbd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3w0hm"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vpyfl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrvbd"]
+_data = {
+&"RESET": SubResource("Animation_vpyfl"),
+&"fadeIn": SubResource("Animation_3w0hm")
+}
+
+[node name="ParkingLotScreen" type="Node2D"]
+script = ExtResource("1_vpyfl")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_bl7rf")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "parkinglotscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Car" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Car"]
+position = Vector2(66.00001, 109)
+scale = Vector2(0.42000002, 0.7225001)
+sprite_frames = SubResource("SpriteFrames_vpyfl")
+autoplay = "default"
+
+[node name="CarButton" type="Button" parent="Stuff/Car"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 3.0
+offset_top = 63.0
+offset_right = 128.0
+offset_bottom = 160.0
+
+[node name="OrObject" parent="Stuff" instance=ExtResource("5_3w0hm")]
+position = Vector2(169, 114)
+
+[node name="Manhole" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Manhole"]
+position = Vector2(252, 109)
+sprite_frames = SubResource("SpriteFrames_4qajs")
+autoplay = "default"
+
+[node name="ManholeButton" type="Button" parent="Stuff/Manhole"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 217.0
+offset_top = 70.0
+offset_right = 296.0
+offset_bottom = 155.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xrvbd")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/Car/CarButton" to="." method="_on_car_button_pressed"]
+[connection signal="pressed" from="Stuff/Manhole/ManholeButton" to="." method="_on_manhole_button_pressed"]

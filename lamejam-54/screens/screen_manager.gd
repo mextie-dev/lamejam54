@@ -5,6 +5,8 @@ extends Node2D
 @onready var ledge_door_screen: Node2D = $LedgeDoorScreen
 @onready var table_chair_screen: Node2D = $TableChairScreen
 @onready var table_screen: Node2D = $TableScreen
+@onready var chair_screen: Node2D = $ChairScreen
+@onready var parking_lot_screen: Node2D = $ParkingLotScreen
 
 var run := false
 
@@ -20,6 +22,7 @@ func _ready() -> void:
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	parking_lot_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
@@ -64,10 +67,11 @@ func _on_ledge_door_screen_door_route() -> void:
 
 
 func _on_ledge_door_screen_ledge_route() -> void:
+	$ParkingLotScreen/AnimationPlayer.play("fadeIn")
 	ledge_door_screen.visible = false
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
-	test_screen.process_mode = Node.PROCESS_MODE_INHERIT
-	test_screen.visible = true
+	parking_lot_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	parking_lot_screen.visible = true
 	upwards += 1
 	
 
@@ -78,3 +82,19 @@ func _on_table_chair_screen_table_route() -> void:
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	table_screen.visible = true
+
+
+func _on_table_chair_screen_chair_route() -> void:
+	$ChairScreen/AnimationPlayer.play("fadeIn")
+	table_chair_screen.visible = false
+	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	chair_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	chair_screen.visible = true
+
+
+func _on_chair_screen_vent_route() -> void:
+	#$Chair/AnimationPlayer.play("fadeIn")
+	chair_screen.visible = false
+	chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	test_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	test_screen.visible = true
