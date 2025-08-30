@@ -73,7 +73,7 @@ func _on_ledge_door_screen_ledge_route() -> void:
 
 
 func _on_table_chair_screen_table_route() -> void:
-	$TableChairScreen/AnimationPlayer.play("fadeIn")
+	$TableScreen/AnimationPlayer.play("fadeIn")
 	table_chair_screen.visible = false
 	table_chair_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	table_screen.process_mode = Node.PROCESS_MODE_INHERIT
