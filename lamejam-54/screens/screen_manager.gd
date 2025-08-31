@@ -21,12 +21,16 @@ extends Node2D
 @onready var plane_cutscene_screen: Node2D = $PlaneCutsceneScreen
 @onready var mountain_path_screen: Node2D = $MountainPathScreen
 @onready var mountain_screen: Node2D = $MountainScreen
+@onready var satan_statue_screen: Node2D = $SatanStatueScreen
+
+
 
 var run := false
 
 var hasKnife := false
 var hasHead := false
 
+var satanOffered := false
 
 var upwards := 0
 var downwards := 0
@@ -49,6 +53,7 @@ func _ready() -> void:
 	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	mountain_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	satan_statue_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
@@ -229,7 +234,8 @@ func _on_plane_cutscene_screen_exit_cutscene() -> void:
 
 
 func _on_airport_screen_plane_route() -> void:
-	#$BathroomScreen/AnimationPlayer.play("fadeIn")
+	$PlaneCutsceneScreen/AnimationPlayer.play("fadeIn")
+	plane_cutscene_screen.exitingArea = 0
 	airport_screen.visible = false
 	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_INHERIT
@@ -269,6 +275,8 @@ func _on_mountain_path_screen_planeexit_route() -> void:
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	plane_cutscene_screen.visible = true
+	plane_cutscene_screen.exitingArea = 1
+	
 
 
 func _on_plane_cutscene_screen_exit_cutscene_from_mountain() -> void:
@@ -277,4 +285,36 @@ func _on_plane_cutscene_screen_exit_cutscene_from_mountain() -> void:
 	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	airport_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	airport_screen.visible = true
-	plane_cutscene_screen.exitingArea = 1
+	plane_cutscene_screen.exitingArea = 0
+
+
+func _on_sewer_screen_lockeddoor_route() -> void:
+	$SatanStatueScreen/AnimationPlayer.play("fadeIn")
+	sewer_screen.visible = false
+	sewer_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	satan_statue_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	satan_statue_screen.visible = true
+
+
+func _on_satan_statue_screen_vent_exit_route() -> void:
+	$SewerScreen/AnimationPlayer.play("fadeIn")
+	satan_statue_screen.visible = false
+	satan_statue_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	sewer_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	sewer_screen.visible = true
+
+
+
+
+func _on_satan_statue_screen_hell_door_route() -> void:
+	pass # Replace with function body.
+
+
+func _on_satan_statue_screen_satan_offered() -> void:
+	if hasHead:
+		$SatanStatueScreen/Stuff/SatanStatue/SatanWithHead.hide()
+		$SatanStatueScreen/Stuff/SatanStatue/SatanNoHead.show()
+		$SatanStatueScreen/Stuff/SatanStatue/GoatHead.show()
+		$SatanStatueScreen/Stuff/HellDoor.show()
+	else:
+		pass # baa

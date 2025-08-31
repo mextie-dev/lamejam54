@@ -1,8 +1,128 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwx4dw2wquh8s"]
+[gd_scene load_steps=23 format=3 uid="uid://bwx4dw2wquh8s"]
 
+[ext_resource type="Script" uid="uid://crpw72vbtxvhl" path="res://scripts/satan_statue_screen.gd" id="1_jyi1n"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_qvvdc"]
+[ext_resource type="Texture2D" uid="uid://dj714twtv72sm" path="res://images/satan_statue_room_frames/ssr_fr1.png" id="2_t2tjt"]
+[ext_resource type="Texture2D" uid="uid://c2t423btbd33p" path="res://images/satan_statue_room_frames/ssr_fr2.png" id="3_d0ong"]
+[ext_resource type="Texture2D" uid="uid://bfqe3tgumm4wk" path="res://images/satan_statue_room_frames/ssr_fr3.png" id="4_pigis"]
+[ext_resource type="Texture2D" uid="uid://didj8ujet8qfb" path="res://images/satan_frames/satan_headless_fr1.png" id="5_hvydc"]
+[ext_resource type="Texture2D" uid="uid://biryonpyif4rr" path="res://images/satan_frames/satan_fr1.png" id="5_y3wfg"]
+[ext_resource type="Texture2D" uid="uid://dlttlij50wxi8" path="res://images/satan_frames/satan_fr2.png" id="6_hvydc"]
+[ext_resource type="Texture2D" uid="uid://bb4isikymf7lk" path="res://images/satan_frames/satan_headless_fr2.png" id="6_kg2qx"]
+[ext_resource type="Texture2D" uid="uid://dws4fb3nip8uu" path="res://images/satan_frames/satan_headless_fr3.png" id="7_2i4vf"]
+[ext_resource type="Texture2D" uid="uid://4qb77nbht5no" path="res://images/satan_frames/satan_fr3.png" id="7_kg2qx"]
+[ext_resource type="Texture2D" uid="uid://bv8j6lb2bt4ra" path="res://images/goat/goat_head.png" id="8_hvydc"]
+[ext_resource type="Texture2D" uid="uid://4j7hq2qlmcys" path="res://images/door_fr/door_fr1.png" id="9_awou6"]
+[ext_resource type="Texture2D" uid="uid://b06ttvbuerhom" path="res://images/door_fr/door_fr2.png" id="10_jyi1n"]
+[ext_resource type="Texture2D" uid="uid://6rjvtu1oo6wd" path="res://images/door_fr/door_fr3.png" id="11_2w2h4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3wfg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2tjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d0ong")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pigis")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj144"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y3wfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hvydc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kg2qx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2i4vf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hvydc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kg2qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2i4vf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34gxx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_awou6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jyi1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2w2h4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wj144"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p42g0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bsl67"]
+_data = {
+&"RESET": SubResource("Animation_p42g0"),
+&"fadeIn": SubResource("Animation_wj144")
+}
 
 [node name="SatanStatueScreen" type="Node2D"]
+script = ExtResource("1_jyi1n")
 
 [node name="YellowPaper" type="Sprite2D" parent="."]
 position = Vector2(160, 142)
@@ -18,3 +138,74 @@ anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "satanscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Backdrop" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Backdrop"]
+sprite_frames = SubResource("SpriteFrames_y3wfg")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="SatanStatue" type="Node2D" parent="Stuff"]
+
+[node name="SatanWithHead" type="AnimatedSprite2D" parent="Stuff/SatanStatue"]
+sprite_frames = SubResource("SpriteFrames_wj144")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="GoatHead" type="Sprite2D" parent="Stuff/SatanStatue"]
+visible = false
+position = Vector2(162, 47)
+texture = ExtResource("8_hvydc")
+
+[node name="SatanNoHead" type="AnimatedSprite2D" parent="Stuff/SatanStatue"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2i4vf")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="SatanStatueButton" type="Button" parent="Stuff/SatanStatue"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 102.0
+offset_top = 48.0
+offset_right = 222.0
+offset_bottom = 235.0
+
+[node name="HellDoor" type="Node2D" parent="Stuff"]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/HellDoor"]
+position = Vector2(46, 203)
+sprite_frames = SubResource("SpriteFrames_34gxx")
+autoplay = "default"
+
+[node name="HellDoorButton" type="Button" parent="Stuff/HellDoor"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 159.0
+offset_right = 86.0
+offset_bottom = 241.0
+
+[node name="VentExit" type="Node2D" parent="Stuff"]
+
+[node name="VentExitButton" type="Button" parent="Stuff/VentExit"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 225.0
+offset_top = 32.0
+offset_right = 284.0
+offset_bottom = 78.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bsl67")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/SatanStatue/SatanStatueButton" to="." method="offerToSatan"]
+[connection signal="pressed" from="Stuff/HellDoor/HellDoorButton" to="." method="_on_hell_door_button_pressed"]
+[connection signal="pressed" from="Stuff/VentExit/VentExitButton" to="." method="_on_vent_exit_button_pressed"]

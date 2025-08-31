@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=25 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bvd27h3v7m0k2" path="res://images/cursor_frames/cursor_fr1.png" id="20_msyx5"]
 [ext_resource type="Texture2D" uid="uid://wu08fxqwa556" path="res://images/cursor_frames/cursor_fr2.png" id="21_qbwuq"]
 [ext_resource type="Texture2D" uid="uid://kpvaeowvmvs1" path="res://images/cursor_frames/cursor_fr3.png" id="22_qpcbq"]
+[ext_resource type="PackedScene" uid="uid://bwx4dw2wquh8s" path="res://screens/satan_statue_screen.tscn" id="23_qbwuq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_16es8"]
 animations = [{
@@ -117,6 +118,9 @@ visible = false
 [node name="MountainScreen" parent="." instance=ExtResource("19_ijwyf")]
 visible = false
 
+[node name="SatanStatueScreen" parent="." instance=ExtResource("23_qbwuq")]
+visible = false
+
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]
 [connection signal="ledge_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_ledge_route"]
@@ -128,6 +132,7 @@ visible = false
 [connection signal="manhole_route" from="ParkingLotScreen" to="." method="_on_parking_lot_screen_manhole_route"]
 [connection signal="vent_route" from="ChairScreen" to="." method="_on_chair_screen_vent_route"]
 [connection signal="ladder_route" from="SewerScreen" to="." method="_on_sewer_screen_ladder_route"]
+[connection signal="lockeddoor_route" from="SewerScreen" to="." method="_on_sewer_screen_lockeddoor_route"]
 [connection signal="ventexit_route" from="SewerScreen" to="." method="_on_sewer_screen_ventexit_route"]
 [connection signal="exit_cutscene" from="CarCutsceneScreen" to="." method="_on_car_cutscene_screen_exit_cutscene"]
 [connection signal="airport_route" from="AirportEntranceScreen" to="." method="_on_airport_entrance_screen_airport_route"]
@@ -140,5 +145,8 @@ visible = false
 [connection signal="rope_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_rope_route"]
 [connection signal="ladder_exit" from="MountainScreen" to="." method="_on_mountain_screen_ladder_exit"]
 [connection signal="pressed_goat" from="MountainScreen" to="." method="_on_mountain_screen_pressed_goat"]
+[connection signal="hell_door_route" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_hell_door_route"]
+[connection signal="satan_offered" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_satan_offered"]
+[connection signal="vent_exit_route" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_vent_exit_route"]
 
 [editable path="TitleScreen"]
