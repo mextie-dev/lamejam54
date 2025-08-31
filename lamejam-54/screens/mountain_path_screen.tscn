@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dppohgfnd5s5y"]
+[gd_scene load_steps=14 format=3 uid="uid://dppohgfnd5s5y"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_5k4hf"]
 [ext_resource type="Script" uid="uid://byps0n5vwula0" path="res://scripts/mountain_path_screen.gd" id="1_qwqqa"]
 [ext_resource type="Texture2D" uid="uid://c2k4tllkg8xre" path="res://images/mountainpath_frames/mountainpath_fr1.png" id="2_jlyvk"]
 [ext_resource type="Texture2D" uid="uid://bxbw1kdu4wrds" path="res://images/mountainpath_frames/mountainpath_fr2.png" id="3_qwqqa"]
 [ext_resource type="Texture2D" uid="uid://yngojryku1i" path="res://images/mountainpath_frames/mountainpath_fr3.png" id="4_05qig"]
+[ext_resource type="Texture2D" uid="uid://dpnveijmfi648" path="res://images/plane_frames/plane_fr1.png" id="6_i3bdo"]
+[ext_resource type="Texture2D" uid="uid://de53hynkgicgq" path="res://images/plane_frames/plane_fr2.png" id="7_228ks"]
+[ext_resource type="Texture2D" uid="uid://qsbxtxqljn7u" path="res://images/plane_frames/plane_fr3.png" id="8_ou0mi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yt1yi"]
 animations = [{
@@ -23,21 +26,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_qwqqa"]
-resource_name = "fadeIn"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Stuff:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkag3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_i3bdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_228ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ou0mi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_05qig"]
 length = 0.001
@@ -52,6 +56,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qwqqa"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yt1yi"]
@@ -96,13 +116,31 @@ offset_left = 151.0
 offset_right = 174.0
 offset_bottom = 147.0
 
-[node name="BushButton" type="Button" parent="Stuff/MountainPath"]
+[node name="Bush" type="Node2D" parent="Stuff"]
+
+[node name="BushButton" type="Button" parent="Stuff/Bush"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 offset_left = 1.0
 offset_top = 142.0
 offset_right = 72.0
 offset_bottom = 188.0
+
+[node name="PlaneExit" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/PlaneExit"]
+position = Vector2(225, 207.00002)
+scale = Vector2(0.54, 0.54)
+sprite_frames = SubResource("SpriteFrames_tkag3")
+autoplay = "default"
+
+[node name="PlaneExitButton" type="Button" parent="Stuff/PlaneExit"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 208.0
+offset_top = 193.0
+offset_right = 250.0
+offset_bottom = 231.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -111,4 +149,5 @@ libraries = {
 autoplay = "fadeIn"
 
 [connection signal="pressed" from="Stuff/MountainPath/RopeButton" to="." method="_on_rope_button_pressed"]
-[connection signal="pressed" from="Stuff/MountainPath/BushButton" to="." method="_on_bush_button_pressed"]
+[connection signal="pressed" from="Stuff/Bush/BushButton" to="." method="_on_bush_button_pressed"]
+[connection signal="pressed" from="Stuff/PlaneExit/PlaneExitButton" to="." method="_on_plane_exit_button_pressed"]

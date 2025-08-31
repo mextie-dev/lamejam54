@@ -3,6 +3,8 @@ extends Node2D
 @onready var inventory_text_knife: Node2D = $InventoryTextKnife
 @onready var inventory_text_goat_head: Node2D = $InventoryTextGoatHead
 
+@onready var cursor: Node2D = $Cursor
+
 
 @onready var title_screen: Node2D = $TitleScreen
 @onready var test_screen: Node2D = $TestScreen
@@ -30,6 +32,8 @@ var upwards := 0
 var downwards := 0
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
 	#add_child(title_screen)
 	test_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	ledge_door_screen.process_mode = Node.PROCESS_MODE_DISABLED
@@ -55,6 +59,12 @@ func _process(delta: float) -> void:
 		print("hasKnife")
 		inventory_text_knife.visible = true
 	pass
+	
+	
+	
+	# move cursor
+	var mouse_position = get_viewport().get_mouse_position()
+	cursor.position = mouse_position
 
 
 
@@ -215,6 +225,7 @@ func _on_plane_cutscene_screen_exit_cutscene() -> void:
 	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	mountain_path_screen.visible = true
+	plane_cutscene_screen.exitingArea = 1
 
 
 func _on_airport_screen_plane_route() -> void:
@@ -250,3 +261,20 @@ func _on_mountain_path_screen_rope_route() -> void:
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	mountain_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	mountain_screen.visible = true
+
+
+func _on_mountain_path_screen_planeexit_route() -> void:
+	$PlaneCutsceneScreen/AnimationPlayer.play("flyPlane")
+	mountain_path_screen.visible = false
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	plane_cutscene_screen.visible = true
+
+
+func _on_plane_cutscene_screen_exit_cutscene_from_mountain() -> void:
+	$AirportScreen/AnimationPlayer.play("fadeIn")
+	plane_cutscene_screen.visible = false
+	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	airport_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	airport_screen.visible = true
+	plane_cutscene_screen.exitingArea = 1

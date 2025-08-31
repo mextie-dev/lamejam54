@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=24 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -19,9 +19,38 @@
 [ext_resource type="Texture2D" uid="uid://bgpsdya8cd2ow" path="res://images/inventory_text.png" id="16_opgj7"]
 [ext_resource type="Texture2D" uid="uid://bv8j6lb2bt4ra" path="res://images/goat/goat_head.png" id="18_ijwyf"]
 [ext_resource type="PackedScene" uid="uid://by2tmpu01vwst" path="res://screens/mountain_screen.tscn" id="19_ijwyf"]
+[ext_resource type="Texture2D" uid="uid://bvd27h3v7m0k2" path="res://images/cursor_frames/cursor_fr1.png" id="20_msyx5"]
+[ext_resource type="Texture2D" uid="uid://wu08fxqwa556" path="res://images/cursor_frames/cursor_fr2.png" id="21_qbwuq"]
+[ext_resource type="Texture2D" uid="uid://kpvaeowvmvs1" path="res://images/cursor_frames/cursor_fr3.png" id="22_qpcbq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16es8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_msyx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qbwuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_qpcbq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ScreenManager" type="Node2D"]
 script = ExtResource("1_4lin0")
+
+[node name="Cursor" type="Node2D" parent="."]
+z_index = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cursor"]
+position = Vector2(-1.1368684e-13, -1.7881393e-07)
+scale = Vector2(0.23333333, 0.23333333)
+sprite_frames = SubResource("SpriteFrames_16es8")
+autoplay = "default"
 
 [node name="InventoryTextKnife" type="Node2D" parent="."]
 visible = false
@@ -106,6 +135,8 @@ visible = false
 [connection signal="plane_route" from="AirportScreen" to="." method="_on_airport_screen_plane_route"]
 [connection signal="toilet_route" from="BathroomScreen" to="." method="_on_bathroom_screen_toilet_route"]
 [connection signal="exit_cutscene" from="PlaneCutsceneScreen" to="." method="_on_plane_cutscene_screen_exit_cutscene"]
+[connection signal="exit_cutscene_from_mountain" from="PlaneCutsceneScreen" to="." method="_on_plane_cutscene_screen_exit_cutscene_from_mountain"]
+[connection signal="planeexit_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_planeexit_route"]
 [connection signal="rope_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_rope_route"]
 [connection signal="ladder_exit" from="MountainScreen" to="." method="_on_mountain_screen_ladder_exit"]
 [connection signal="pressed_goat" from="MountainScreen" to="." method="_on_mountain_screen_pressed_goat"]
