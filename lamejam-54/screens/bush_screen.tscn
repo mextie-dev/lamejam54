@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfvny2j8cmcxd"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_gs1ed"]
+[ext_resource type="Script" uid="uid://cxo2uj1aip5l1" path="res://scripts/bush_screen.gd" id="1_pqqsv"]
+[ext_resource type="Texture2D" uid="uid://d03t41wlqjiod" path="res://images/cross_frames/cross_fr1.png" id="2_abxny"]
+[ext_resource type="Texture2D" uid="uid://dmjd71m0lufnu" path="res://images/cross_frames/cross_fr2.png" id="3_nw8d6"]
+[ext_resource type="Texture2D" uid="uid://dnu2qeaaqvfxs" path="res://images/cross_frames/cross_fr3.png" id="4_pqqsv"]
+[ext_resource type="Texture2D" uid="uid://c2o3j1up2rnqf" path="res://images/bush_exit.png" id="5_nw8d6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x5l0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_abxny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nw8d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pqqsv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqqsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nw8d6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_pqqsv"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4a3jp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11mft"]
+_data = {
+&"RESET": SubResource("Animation_4a3jp"),
+&"fadeIn": SubResource("Animation_pqqsv")
+}
+
+[node name="BushScreen" type="Node2D"]
+script = ExtResource("1_pqqsv")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_gs1ed")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "satanscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Cross" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Cross"]
+position = Vector2(158, 118)
+scale = Vector2(0.47, 0.47)
+sprite_frames = SubResource("SpriteFrames_x5l0w")
+autoplay = "default"
+
+[node name="CrossButton" type="Button" parent="Stuff/Cross"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 143.0
+offset_top = 95.0
+offset_right = 178.0
+offset_bottom = 142.0
+
+[node name="BushExit" type="Node2D" parent="Stuff"]
+
+[node name="BushExit" type="AnimatedSprite2D" parent="Stuff/BushExit"]
+position = Vector2(269, 192)
+sprite_frames = SubResource("SpriteFrames_pqqsv")
+
+[node name="BushExitButton" type="Button" parent="Stuff/BushExit"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 223.0
+offset_top = 170.0
+offset_right = 314.0
+offset_bottom = 243.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_11mft")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/Cross/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="Stuff/BushExit/BushExitButton" to="." method="_on_bush_exit_button_pressed"]

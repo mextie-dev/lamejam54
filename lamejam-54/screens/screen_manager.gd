@@ -22,13 +22,17 @@ extends Node2D
 @onready var mountain_path_screen: Node2D = $MountainPathScreen
 @onready var mountain_screen: Node2D = $MountainScreen
 @onready var satan_statue_screen: Node2D = $SatanStatueScreen
-
-
+@onready var ladder_hole_screen: Node2D = $LadderHoleScreen
+@onready var hell_screen: Node2D = $HellScreen
+@onready var ending_1_screen: Node2D = $Ending1Screen
+@onready var ending_2_screen: Node2D = $Ending2Screen
+@onready var bush_screen: Node2D = $BushScreen
 
 var run := false
 
 var hasKnife := false
 var hasHead := false
+var hasCrucifix := false
 
 var satanOffered := false
 
@@ -54,6 +58,11 @@ func _ready() -> void:
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	mountain_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	satan_statue_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	ladder_hole_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	hell_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	ending_1_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	ending_2_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	bush_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
@@ -307,7 +316,11 @@ func _on_satan_statue_screen_vent_exit_route() -> void:
 
 
 func _on_satan_statue_screen_hell_door_route() -> void:
-	pass # Replace with function body.
+	$LadderHoleScreen/AnimationPlayer.play("fadeIn")
+	satan_statue_screen.visible = false
+	satan_statue_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	ladder_hole_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	ladder_hole_screen.visible = true
 
 
 func _on_satan_statue_screen_satan_offered() -> void:
@@ -316,5 +329,60 @@ func _on_satan_statue_screen_satan_offered() -> void:
 		$SatanStatueScreen/Stuff/SatanStatue/SatanNoHead.show()
 		$SatanStatueScreen/Stuff/SatanStatue/GoatHead.show()
 		$SatanStatueScreen/Stuff/HellDoor.show()
+		inventory_text_goat_head.hide()
+		hasHead = false
 	else:
 		pass # baa
+
+
+func _on_ladder_hole_screen_ladderhole_route() -> void:
+	$HellScreen/AnimationPlayer.play("endCutscene")
+	ladder_hole_screen.visible = false
+	ladder_hole_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	hell_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	hell_screen.visible = true
+
+
+func _on_hell_screen_tried_secret_ending() -> void:
+	if hasCrucifix:
+		$HellScreen/AnimationPlayer.stop()
+		$HellScreen/AnimationPlayer.play("secret_ending")
+		$HellScreen/Stuff/Background/AnimatedSprite2D.stop()
+		await get_tree().create_timer(10).timeout
+
+		$Ending2Screen/AnimationPlayer.play("endCredits")
+		hell_screen.visible = false
+		hell_screen.process_mode = Node.PROCESS_MODE_DISABLED
+		ending_2_screen.process_mode = Node.PROCESS_MODE_INHERIT
+		ending_2_screen.visible = true
+	else:
+		pass # play subtle sound
+
+
+
+func _on_hell_screen_end_game() -> void:
+	$Ending1Screen/AnimationPlayer.play("endCredits")
+	hell_screen.visible = false
+	hell_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	ending_1_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	ending_1_screen.visible = true
+
+
+func _on_bush_screen_bushexit_route() -> void:
+	$MountainPathScreen/AnimationPlayer.play("fadeIn")
+	bush_screen.visible = false
+	bush_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	mountain_path_screen.visible = true
+
+
+func _on_bush_screen_got_cross() -> void:
+	hasCrucifix = true
+
+
+func _on_mountain_path_screen_bush_route() -> void:
+	$BushScreen/AnimationPlayer.play("fadeIn")
+	mountain_path_screen.visible = false
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	bush_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	bush_screen.visible = true

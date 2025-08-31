@@ -1,0 +1,302 @@
+[gd_scene load_steps=26 format=3 uid="uid://dnrvgbh114cpd"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_33d5h"]
+[ext_resource type="Texture2D" uid="uid://h4o78wjncdim" path="res://images/ending1_frames/yhrh_fr1.png" id="2_0eiff"]
+[ext_resource type="Texture2D" uid="uid://x1oytv0jxu1p" path="res://images/ending1_frames/yhrh_fr2.png" id="3_yyu60"]
+[ext_resource type="Texture2D" uid="uid://qac1g7t5v0fa" path="res://images/ending1_frames/yhrh_fr3.png" id="4_vibfg"]
+[ext_resource type="Texture2D" uid="uid://b3hjp6eoo4kke" path="res://images/ending1_frames/bcugl_fr1.png" id="5_iu5tf"]
+[ext_resource type="Texture2D" uid="uid://b7crjcwgw8fx8" path="res://images/ending1_frames/bcugl_fr2.png" id="6_g8y2w"]
+[ext_resource type="Texture2D" uid="uid://dr738otmf5nb3" path="res://images/ending1_frames/bcugl_fr3.png" id="7_470wm"]
+[ext_resource type="Texture2D" uid="uid://cg1pejrxkk2h7" path="res://images/ending1_frames/gamebymextie_fr1.png" id="8_qjysa"]
+[ext_resource type="Texture2D" uid="uid://bpuppap64a8d6" path="res://images/ending1_frames/gamebymextie_fr2.png" id="9_kitd7"]
+[ext_resource type="Texture2D" uid="uid://d08p7aou4j4gv" path="res://images/ending1_frames/gamebymextie_fr3.png" id="10_28qfr"]
+[ext_resource type="Texture2D" uid="uid://qnnmp3ro48d7" path="res://images/ending1_frames/goatbymarina_fr1.png" id="11_h8a4s"]
+[ext_resource type="Texture2D" uid="uid://hg2moebesqau" path="res://images/ending1_frames/goatbymarina_fr2.png" id="12_a1u7q"]
+[ext_resource type="Texture2D" uid="uid://crcv4uwexc1c7" path="res://images/ending1_frames/goatbymarina_fr3.png" id="13_wur4c"]
+[ext_resource type="Texture2D" uid="uid://4k7rhh884gke" path="res://images/ending1_frames/thankyou_fr1.png" id="14_0mcpv"]
+[ext_resource type="Texture2D" uid="uid://bh1lpaumto6m4" path="res://images/ending1_frames/thankyou_fr2.png" id="15_fcn16"]
+[ext_resource type="Texture2D" uid="uid://d1teqomalfuvg" path="res://images/ending1_frames/thankyou_fr3.png" id="16_yevs2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iu5tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0eiff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yyu60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vibfg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe4h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_iu5tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g8y2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_470wm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tambq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_qjysa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kitd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_28qfr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sn3sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_h8a4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_a1u7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wur4c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eq0vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0mcpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fcn16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_yevs2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_qjysa"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_kitd7"]
+resource_name = "endCredits"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Ending1ReachedHell:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1.42, 2.55, 5.5666666, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/Ending1GoLower:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.2, 4.4333334, 5.58, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff/Credits/GameByMextie:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.46, 8.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stuff/Credits/GoatByMarina:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.46, 9.713332, 10.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stuff/Credits/ThankYou:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.46, 11.828103, 13.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_28qfr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Ending1ReachedHell:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/Ending1GoLower:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff/Credits/GameByMextie:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stuff/Credits/GoatByMarina:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stuff/Credits/ThankYou:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h8a4s"]
+_data = {
+&"RESET": SubResource("Animation_28qfr"),
+&"endCredits": SubResource("Animation_kitd7"),
+&"new_animation": SubResource("Animation_qjysa")
+}
+
+[node name="Ending1Screen" type="Node2D"]
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_33d5h")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "end 1"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Ending1ReachedHell" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Ending1ReachedHell"]
+sprite_frames = SubResource("SpriteFrames_iu5tf")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="Ending1GoLower" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Ending1GoLower"]
+sprite_frames = SubResource("SpriteFrames_pe4h8")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="Credits" type="Node2D" parent="Stuff"]
+
+[node name="GameByMextie" type="Node2D" parent="Stuff/Credits"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Credits/GameByMextie"]
+sprite_frames = SubResource("SpriteFrames_tambq")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="GoatByMarina" type="Node2D" parent="Stuff/Credits"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Credits/GoatByMarina"]
+sprite_frames = SubResource("SpriteFrames_sn3sw")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="ThankYou" type="Node2D" parent="Stuff/Credits"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Credits/ThankYou"]
+sprite_frames = SubResource("SpriteFrames_eq0vc")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h8a4s")
+}
+autoplay = "endCredits"

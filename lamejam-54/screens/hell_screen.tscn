@@ -1,0 +1,218 @@
+[gd_scene load_steps=16 format=3 uid="uid://cpwwxqoeirgrl"]
+
+[ext_resource type="Script" uid="uid://07cbyo8hapmf" path="res://scripts/hell_screen.gd" id="1_e2erp"]
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_e4l8t"]
+[ext_resource type="Texture2D" uid="uid://0qcvq4vgeyv1" path="res://images/cross_frames/hell_fr1.png" id="3_yf1fl"]
+[ext_resource type="Texture2D" uid="uid://b6iw84knlchw0" path="res://images/cross_frames/hell_fr2.png" id="4_1hnxe"]
+[ext_resource type="Texture2D" uid="uid://s31tjpdet2nt" path="res://images/cross_frames/hell_fr3.png" id="5_rn12u"]
+[ext_resource type="Texture2D" uid="uid://bq4n5tw8aha31" path="res://images/cross_frames/crucifix_fr1.png" id="6_igj33"]
+[ext_resource type="Texture2D" uid="uid://crwgaf0jx1saa" path="res://images/cross_frames/crucifix_fr2.png" id="7_dabd8"]
+[ext_resource type="Texture2D" uid="uid://suu1v7dlom2m" path="res://images/cross_frames/crucifix_fr3.png" id="8_2rrr2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t32uc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yf1fl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1hnxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rn12u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41eip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_igj33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dabd8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2rrr2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_e2erp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/Crucifix:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(165, 117)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff/Crucifix:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yjxg4"]
+resource_name = "endCutscene"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5000001, 3.5, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"endGame"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_e4l8t"]
+resource_name = "fadeIn"
+length = 1.5
+
+[sub_resource type="Animation" id="Animation_yf1fl"]
+resource_name = "secret_ending"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff/Crucifix:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8.57),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(165, 117), Vector2(165, 117)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stuff/Crucifix:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 6.94),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 3.141592653589793]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stuff:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(9.3, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jva31"]
+_data = {
+&"RESET": SubResource("Animation_e2erp"),
+&"endCutscene": SubResource("Animation_yjxg4"),
+&"fadeIn": SubResource("Animation_e4l8t"),
+&"secret_ending": SubResource("Animation_yf1fl")
+}
+
+[node name="HellScreen" type="Node2D"]
+script = ExtResource("1_e2erp")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_e4l8t")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "satanscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Background" type="Node2D" parent="Stuff"]
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Background"]
+sprite_frames = SubResource("SpriteFrames_t32uc")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="SecretEnding" type="Node2D" parent="Stuff"]
+
+[node name="SecretEndingButton" type="Button" parent="Stuff/SecretEnding"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 86.0
+offset_top = 23.0
+offset_right = 212.0
+offset_bottom = 208.0
+
+[node name="Crucifix" type="Node2D" parent="Stuff"]
+position = Vector2(165, 117)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Crucifix"]
+sprite_frames = SubResource("SpriteFrames_41eip")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jva31")
+}
+autoplay = "endCutscene"
+
+[connection signal="pressed" from="Stuff/SecretEnding/SecretEndingButton" to="." method="_on_secret_ending_button_pressed"]

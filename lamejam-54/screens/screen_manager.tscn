@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=30 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -21,8 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://by2tmpu01vwst" path="res://screens/mountain_screen.tscn" id="19_ijwyf"]
 [ext_resource type="Texture2D" uid="uid://bvd27h3v7m0k2" path="res://images/cursor_frames/cursor_fr1.png" id="20_msyx5"]
 [ext_resource type="Texture2D" uid="uid://wu08fxqwa556" path="res://images/cursor_frames/cursor_fr2.png" id="21_qbwuq"]
+[ext_resource type="PackedScene" uid="uid://bfvny2j8cmcxd" path="res://screens/bush_screen.tscn" id="22_kac5u"]
 [ext_resource type="Texture2D" uid="uid://kpvaeowvmvs1" path="res://images/cursor_frames/cursor_fr3.png" id="22_qpcbq"]
 [ext_resource type="PackedScene" uid="uid://bwx4dw2wquh8s" path="res://screens/satan_statue_screen.tscn" id="23_qbwuq"]
+[ext_resource type="PackedScene" uid="uid://cl7vclxng7ed6" path="res://screens/ladder_hole_screen.tscn" id="24_qpcbq"]
+[ext_resource type="PackedScene" uid="uid://cpwwxqoeirgrl" path="res://screens/hell_screen.tscn" id="25_16es8"]
+[ext_resource type="PackedScene" uid="uid://dnrvgbh114cpd" path="res://screens/ending_1_screen.tscn" id="26_a8jms"]
+[ext_resource type="PackedScene" uid="uid://b5t6ykmlut777" path="res://screens/ending_2_screen.tscn" id="27_kac5u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_16es8"]
 animations = [{
@@ -115,10 +120,25 @@ visible = false
 [node name="MountainPathScreen" parent="." instance=ExtResource("15_qok7j")]
 visible = false
 
+[node name="BushScreen" parent="." instance=ExtResource("22_kac5u")]
+visible = false
+
 [node name="MountainScreen" parent="." instance=ExtResource("19_ijwyf")]
 visible = false
 
 [node name="SatanStatueScreen" parent="." instance=ExtResource("23_qbwuq")]
+visible = false
+
+[node name="LadderHoleScreen" parent="." instance=ExtResource("24_qpcbq")]
+visible = false
+
+[node name="HellScreen" parent="." instance=ExtResource("25_16es8")]
+visible = false
+
+[node name="Ending1Screen" parent="." instance=ExtResource("26_a8jms")]
+visible = false
+
+[node name="Ending2Screen" parent="." instance=ExtResource("27_kac5u")]
 visible = false
 
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
@@ -141,12 +161,18 @@ visible = false
 [connection signal="toilet_route" from="BathroomScreen" to="." method="_on_bathroom_screen_toilet_route"]
 [connection signal="exit_cutscene" from="PlaneCutsceneScreen" to="." method="_on_plane_cutscene_screen_exit_cutscene"]
 [connection signal="exit_cutscene_from_mountain" from="PlaneCutsceneScreen" to="." method="_on_plane_cutscene_screen_exit_cutscene_from_mountain"]
+[connection signal="bush_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_bush_route"]
 [connection signal="planeexit_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_planeexit_route"]
 [connection signal="rope_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_rope_route"]
+[connection signal="bushexit_route" from="BushScreen" to="." method="_on_bush_screen_bushexit_route"]
+[connection signal="got_cross" from="BushScreen" to="." method="_on_bush_screen_got_cross"]
 [connection signal="ladder_exit" from="MountainScreen" to="." method="_on_mountain_screen_ladder_exit"]
 [connection signal="pressed_goat" from="MountainScreen" to="." method="_on_mountain_screen_pressed_goat"]
 [connection signal="hell_door_route" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_hell_door_route"]
 [connection signal="satan_offered" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_satan_offered"]
 [connection signal="vent_exit_route" from="SatanStatueScreen" to="." method="_on_satan_statue_screen_vent_exit_route"]
+[connection signal="ladderhole_route" from="LadderHoleScreen" to="." method="_on_ladder_hole_screen_ladderhole_route"]
+[connection signal="end_game" from="HellScreen" to="." method="_on_hell_screen_end_game"]
+[connection signal="tried_secret_ending" from="HellScreen" to="." method="_on_hell_screen_tried_secret_ending"]
 
 [editable path="TitleScreen"]

@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://cl7vclxng7ed6"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_8lslw"]
+[ext_resource type="Script" uid="uid://cwflbikbfx21k" path="res://screens/ladder_hole_screen.gd" id="1_xr081"]
+[ext_resource type="Texture2D" uid="uid://c7yirex43fvuv" path="res://images/ladderhole_frames/ladderhole_fr1.png" id="2_xr081"]
+[ext_resource type="Texture2D" uid="uid://dcox17bfjahke" path="res://images/ladderhole_frames/ladderhole_fr2.png" id="3_ka80b"]
+[ext_resource type="Texture2D" uid="uid://bfdj44d48vpy3" path="res://images/ladderhole_frames/ladderhole_fr3.png" id="4_xnsl2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xyhj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xr081")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ka80b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xnsl2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xr081"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ka80b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnsl2"]
+_data = {
+&"RESET": SubResource("Animation_ka80b"),
+&"fadeIn": SubResource("Animation_xr081")
+}
+
+[node name="LadderHoleScreen" type="Node2D"]
+script = ExtResource("1_xr081")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_8lslw")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "satanscreen"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Ladder" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/Ladder"]
+position = Vector2(142, 136)
+sprite_frames = SubResource("SpriteFrames_4xyhj")
+autoplay = "default"
+
+[node name="LadderHoleButton" type="Button" parent="Stuff/Ladder"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 81.0
+offset_top = 30.0
+offset_right = 234.0
+offset_bottom = 176.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xnsl2")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/Ladder/LadderHoleButton" to="." method="_on_ladder_hole_button_pressed"]
