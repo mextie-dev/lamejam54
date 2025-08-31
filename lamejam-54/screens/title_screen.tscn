@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://1m3cftdxaq86"]
+[gd_scene load_steps=21 format=3 uid="uid://1m3cftdxaq86"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_grftj"]
 [ext_resource type="Script" uid="uid://brfy2pbw8gwmh" path="res://scripts/title_screen.gd" id="1_mvehq"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://d0nr3tjbjlfak" path="res://images/enter_frames/enter_fr1.png" id="8_ghegn"]
 [ext_resource type="Texture2D" uid="uid://7cbcmp8qnvqo" path="res://images/enter_frames/enter_fr2.png" id="9_mvehq"]
 [ext_resource type="Texture2D" uid="uid://cm42rve2u4gmp" path="res://images/enter_frames/enter_fr3.png" id="10_mo0vk"]
+[ext_resource type="AudioStream" uid="uid://bo2vtbx710l7g" path="res://sounds/open hole.mp3" id="12_mo0vk"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="13_fgfhh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jf2m"]
 animations = [{
@@ -125,6 +127,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenHole:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_ghegn"]
 resource_name = "fadeInEverything"
@@ -188,6 +202,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenHole:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.09769006, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_mo0vk"]
@@ -294,5 +320,11 @@ offset_left = 115.0
 offset_top = 50.0
 offset_right = 175.0
 offset_bottom = 108.0
+
+[node name="OpenHole" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_mo0vk")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_fgfhh")
 
 [connection signal="pressed" from="Stuff/Buttons/Button" to="." method="_on_button_pressed"]

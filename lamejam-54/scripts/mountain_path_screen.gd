@@ -8,6 +8,7 @@ func _ready() -> void:
 	animation_player.play("fadeIn")
 
 func _on_rope_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")
@@ -15,6 +16,7 @@ func _on_rope_button_pressed() -> void:
 
 
 func _on_bush_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")
@@ -25,6 +27,7 @@ func exit():
 
 
 func _on_plane_exit_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")

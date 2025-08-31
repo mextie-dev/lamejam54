@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw83c0y6157qy"]
+[gd_scene load_steps=16 format=3 uid="uid://dw83c0y6157qy"]
 
 [ext_resource type="Script" uid="uid://crhpdyvhv1vir" path="res://scripts/ledge_door_screen.gd" id="1_cv2od"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_hrhlc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://0niddb1g8jo8" path="res://images/ledge_frames/ledge_fr3.png" id="4_vas43"]
 [ext_resource type="Texture2D" uid="uid://6rjvtu1oo6wd" path="res://images/door_fr/door_fr3.png" id="5_l1ijp"]
 [ext_resource type="PackedScene" uid="uid://cwwnfbx5ynkjk" path="res://OrObject.tscn" id="5_mhh3k"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="10_l1ijp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_erb0k"]
 animations = [{
@@ -137,6 +138,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_erb0k")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_l1ijp")
 
 [connection signal="pressed" from="Stuff/Buttons/DoorButton" to="." method="_on_door_button_pressed"]
 [connection signal="pressed" from="Stuff/Buttons/LedgeButton" to="." method="_on_ledge_button_pressed"]

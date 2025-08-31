@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpwwxqoeirgrl"]
+[gd_scene load_steps=17 format=3 uid="uid://cpwwxqoeirgrl"]
 
 [ext_resource type="Script" uid="uid://07cbyo8hapmf" path="res://scripts/hell_screen.gd" id="1_e2erp"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_e4l8t"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bq4n5tw8aha31" path="res://images/cross_frames/crucifix_fr1.png" id="6_igj33"]
 [ext_resource type="Texture2D" uid="uid://crwgaf0jx1saa" path="res://images/cross_frames/crucifix_fr2.png" id="7_dabd8"]
 [ext_resource type="Texture2D" uid="uid://suu1v7dlom2m" path="res://images/cross_frames/crucifix_fr3.png" id="8_2rrr2"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="9_1hnxe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t32uc"]
 animations = [{
@@ -214,5 +215,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_jva31")
 }
 autoplay = "endCutscene"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_1hnxe")
 
 [connection signal="pressed" from="Stuff/SecretEnding/SecretEndingButton" to="." method="_on_secret_ending_button_pressed"]

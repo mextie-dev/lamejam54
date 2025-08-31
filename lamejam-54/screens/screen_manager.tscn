@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=32 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://cpwwxqoeirgrl" path="res://screens/hell_screen.tscn" id="25_16es8"]
 [ext_resource type="PackedScene" uid="uid://dnrvgbh114cpd" path="res://screens/ending_1_screen.tscn" id="26_a8jms"]
 [ext_resource type="PackedScene" uid="uid://b5t6ykmlut777" path="res://screens/ending_2_screen.tscn" id="27_kac5u"]
+[ext_resource type="AudioStream" uid="uid://bt5d1iehylent" path="res://sounds/game jam song.mp3" id="29_tviue"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="30_f2jaq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_16es8"]
 animations = [{
@@ -140,6 +142,15 @@ visible = false
 
 [node name="Ending2Screen" parent="." instance=ExtResource("27_kac5u")]
 visible = false
+
+[node name="GameOst" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_tviue")
+volume_db = 17.942
+autoplay = true
+parameters/looping = true
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_f2jaq")
 
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]

@@ -28,6 +28,7 @@ func restart_room():
 
 
 func _on_paper_button_pressed() -> void:
+	$Click.play()
 	table_face.visible = false
 	showPaper()
 
@@ -43,6 +44,7 @@ func exit():
 
 
 func _on_exit_paper_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	#self.visible = false
@@ -50,6 +52,7 @@ func _on_exit_paper_pressed() -> void:
 
 
 func _on_knife_button_pressed() -> void:
+	$Click.play()
 	table_knife.visible = false
 	table_no_knife.visible = true
 	knife_button.disabled = true

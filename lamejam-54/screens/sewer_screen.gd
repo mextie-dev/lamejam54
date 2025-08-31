@@ -13,17 +13,20 @@ func _ready() -> void:
 	animation_player.play("fadeIn")
 
 func _on_lockeddoor_button_pressed() -> void:
+	$Click.play()
 	lock_screen.visible = true
 
 
 
 func _on_ladder_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")
 	ladder_route.emit()
 
 func enteredCode():
+	$Click.play()
 	lock_screen.queue_free()
 	locked_door_button.visible = false
 	unlocked_door_button.visible = true
@@ -33,6 +36,7 @@ func exit():
 
 
 func _on_unlocked_door_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("unlocked door")
@@ -40,6 +44,7 @@ func _on_unlocked_door_button_pressed() -> void:
 
 
 func _on_vent_exit_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")

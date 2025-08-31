@@ -8,6 +8,7 @@ func _ready() -> void:
 	animation_player.play("fadeIn")
 
 func _on_vent_exit_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")
@@ -15,12 +16,14 @@ func _on_vent_exit_button_pressed() -> void:
 
 
 func _on_hell_door_button_pressed() -> void:
+	$Click.play()
 	animation_player.play_backwards("fadeIn")
 	await get_tree().create_timer(2).timeout
 	print("worked")
 	hell_door_route.emit()
 	
 func offerToSatan():
+	$Click.play()
 	satan_offered.emit()
 
 func exit():

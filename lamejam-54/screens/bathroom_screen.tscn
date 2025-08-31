@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://2qu8yrr8r2xj"]
+[gd_scene load_steps=11 format=3 uid="uid://2qu8yrr8r2xj"]
 
 [ext_resource type="Script" uid="uid://cjl0fdai1xhr1" path="res://scripts/bathroom_screen.gd" id="1_nhnl4"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_tloai"]
 [ext_resource type="Texture2D" uid="uid://2an32cigpmub" path="res://images/bathroom_frames/bathroom_fr1.png" id="2_uqx3h"]
 [ext_resource type="Texture2D" uid="uid://yv13vhw70ptr" path="res://images/bathroom_frames/bathroom_fr2.png" id="3_nhnl4"]
 [ext_resource type="Texture2D" uid="uid://du8mvrhvgydak" path="res://images/bathroom_frames/bathroom_fr3.png" id="4_swf3e"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="6_swf3e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpsry"]
 animations = [{
@@ -116,6 +117,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_vpsry")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_swf3e")
 
 [connection signal="pressed" from="Stuff/Toilets/ToiletButton" to="." method="_on_toilet_button_pressed"]
 [connection signal="pressed" from="Stuff/Toilets/ToiletButton/ToiletButton2" to="." method="_on_toilet_button_pressed"]

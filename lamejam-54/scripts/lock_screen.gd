@@ -9,36 +9,43 @@ extends Node2D
 signal right_code()
 
 func _on_up_1_pressed() -> void:
+	$Click.play()
 	print(number_1.frame)
 	number_1.frame += 1
 
 func _on_up_2_pressed() -> void:
+	$Click.play()
 	print(number_2.frame)
 	
 	number_2.frame += 1
 
 func _on_up_3_pressed() -> void:
+	$Click.play()
 	print(number_3.frame)
 	
 	number_3.frame += 1
 
 func _on_down_1_pressed() -> void:
+	$Click.play()
 	print(number_1.frame)
 	
 	number_1.frame -= 1
 
 func _on_down_2_pressed() -> void:
+	$Click.play()
 	print(number_2.frame)
 	
 	number_2.frame -= 1
 
 func _on_down_3_pressed() -> void:
+	$Click.play()
 	print(number_3.frame)
 	
 	number_3.frame -= 1
 
 
 func _on_check_button_pressed() -> void:
+	$Click.play()
 	if number_1.frame == 0 && number_2.frame == 3 && number_3.frame == 0:
 		print("right code")
 		right_code.emit()

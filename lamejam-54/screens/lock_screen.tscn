@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cs2lwfn62oi11"]
+[gd_scene load_steps=21 format=3 uid="uid://cs2lwfn62oi11"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_armi7"]
 [ext_resource type="Script" uid="uid://core2kw26fx18" path="res://scripts/lock_screen.gd" id="1_yev20"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b846tfueob077" path="res://images/wrong_frames/wrong_fr1.png" id="15_66q4x"]
 [ext_resource type="Texture2D" uid="uid://d22dxj3qijamx" path="res://images/wrong_frames/wrong_fr2.png" id="16_w7iot"]
 [ext_resource type="Texture2D" uid="uid://c54pnf85icrff" path="res://images/wrong_frames/wrong_fr3.png" id="17_nxfc0"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="18_w7iot"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r8x2f"]
 animations = [{
@@ -228,6 +229,9 @@ sprite_frames = SubResource("SpriteFrames_w4yjk")
 autoplay = "default"
 frame = 1
 frame_progress = 0.6991654
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_w7iot")
 
 [connection signal="pressed" from="Puzzle/UpArrow1/Up1" to="." method="_on_up_1_pressed"]
 [connection signal="pressed" from="Puzzle/UpArrow2/Up2" to="." method="_on_up_2_pressed"]

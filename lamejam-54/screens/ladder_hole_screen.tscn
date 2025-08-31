@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl7vclxng7ed6"]
+[gd_scene load_steps=11 format=3 uid="uid://cl7vclxng7ed6"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_8lslw"]
 [ext_resource type="Script" uid="uid://cwflbikbfx21k" path="res://screens/ladder_hole_screen.gd" id="1_xr081"]
 [ext_resource type="Texture2D" uid="uid://c7yirex43fvuv" path="res://images/ladderhole_frames/ladderhole_fr1.png" id="2_xr081"]
 [ext_resource type="Texture2D" uid="uid://dcox17bfjahke" path="res://images/ladderhole_frames/ladderhole_fr2.png" id="3_ka80b"]
 [ext_resource type="Texture2D" uid="uid://bfdj44d48vpy3" path="res://images/ladderhole_frames/ladderhole_fr3.png" id="4_xnsl2"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="6_ka80b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4xyhj"]
 animations = [{
@@ -101,5 +102,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_xnsl2")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ka80b")
 
 [connection signal="pressed" from="Stuff/Ladder/LadderHoleButton" to="." method="_on_ladder_hole_button_pressed"]

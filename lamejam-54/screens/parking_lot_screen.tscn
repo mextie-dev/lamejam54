@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsmno0f4ce04b"]
+[gd_scene load_steps=16 format=3 uid="uid://bsmno0f4ce04b"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_bl7rf"]
 [ext_resource type="Script" uid="uid://dwlok5ey73b7j" path="res://scripts/parking_lot_screen.gd" id="1_vpyfl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dra3ufdg3yndy" path="res://images/manhole_fr/manhole_f1.png" id="6_3w0hm"]
 [ext_resource type="Texture2D" uid="uid://bbuls13n0lxd4" path="res://images/manhole_fr/manhole_f2.png" id="7_vpyfl"]
 [ext_resource type="Texture2D" uid="uid://3ku63pt22icr" path="res://images/manhole_fr/manhole_f3.png" id="8_xrvbd"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="10_xrvbd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpyfl"]
 animations = [{
@@ -44,6 +45,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vpyfl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_3w0hm"]
 resource_name = "fadeIn"
 length = 1.5
@@ -58,21 +74,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_vpyfl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Stuff:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrvbd"]
@@ -140,6 +141,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_xrvbd")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_xrvbd")
 
 [connection signal="pressed" from="Stuff/Car/CarButton" to="." method="_on_car_button_pressed"]
 [connection signal="pressed" from="Stuff/Manhole/ManholeButton" to="." method="_on_manhole_button_pressed"]

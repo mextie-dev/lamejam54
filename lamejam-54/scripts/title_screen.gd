@@ -5,6 +5,7 @@ extends Node2D
 signal start_game()
 
 func _on_button_pressed() -> void:
+	$Click.play()
 	animation_player.play("fadeOutEverything")
 	
 

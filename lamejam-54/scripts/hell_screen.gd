@@ -11,4 +11,5 @@ func endGame():
 
 
 func _on_secret_ending_button_pressed() -> void:
+	$Click.play()
 	tried_secret_ending.emit()

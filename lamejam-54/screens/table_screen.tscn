@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxoo8r35p6n3f"]
+[gd_scene load_steps=19 format=3 uid="uid://bxoo8r35p6n3f"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_argxw"]
 [ext_resource type="Script" uid="uid://0syrx82rah7i" path="res://scripts/table_screen.gd" id="1_f122l"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dggn4vfkh474c" path="res://images/table_fr/table_noknife_fr1.png" id="9_nduyt"]
 [ext_resource type="Texture2D" uid="uid://c4dtwbgpj7x21" path="res://images/table_fr/table_noknife_fr2.png" id="10_bg41e"]
 [ext_resource type="Texture2D" uid="uid://cnxwj7leydjim" path="res://images/table_fr/table_noknife_fr3.png" id="11_r5n4s"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="12_bg41e"]
 
 [sub_resource type="Animation" id="Animation_f122l"]
 length = 0.001
@@ -173,6 +174,9 @@ anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "tablechairscreen"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_bg41e")
 
 [connection signal="pressed" from="Stuff/Paper/ExitPaper" to="." method="_on_exit_paper_pressed"]
 [connection signal="pressed" from="Stuff/TableFace/PaperButton" to="." method="_on_paper_button_pressed"]

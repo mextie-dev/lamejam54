@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://by2tmpu01vwst"]
+[gd_scene load_steps=18 format=3 uid="uid://by2tmpu01vwst"]
 
 [ext_resource type="Script" uid="uid://q7owoq0n8ms" path="res://scripts/mountain_screen.gd" id="1_1renv"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_gj5ly"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://s0ew8dnflci2" path="res://images/ladder_frames/ladder_fr1.png" id="8_8rn31"]
 [ext_resource type="Texture2D" uid="uid://djfbt62agls2" path="res://images/ladder_frames/ladder_fr2.png" id="9_c5yfr"]
 [ext_resource type="Texture2D" uid="uid://c4vj7xw826v5h" path="res://images/ladder_frames/ladder_fr3.png" id="10_jtow1"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="11_8rn31"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8rn31"]
 animations = [{
@@ -164,6 +165,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_c5yfr")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8rn31")
 
 [connection signal="pressed" from="Stuff/Goat/GoatButton" to="." method="_on_goat_button_pressed"]
 [connection signal="pressed" from="Stuff/LadderExit/LadderButton" to="." method="_on_ladder_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfvny2j8cmcxd"]
+[gd_scene load_steps=13 format=3 uid="uid://bfvny2j8cmcxd"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_gs1ed"]
 [ext_resource type="Script" uid="uid://cxo2uj1aip5l1" path="res://scripts/bush_screen.gd" id="1_pqqsv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmjd71m0lufnu" path="res://images/cross_frames/cross_fr2.png" id="3_nw8d6"]
 [ext_resource type="Texture2D" uid="uid://dnu2qeaaqvfxs" path="res://images/cross_frames/cross_fr3.png" id="4_pqqsv"]
 [ext_resource type="Texture2D" uid="uid://c2o3j1up2rnqf" path="res://images/bush_exit.png" id="5_nw8d6"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="7_4a3jp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x5l0w"]
 animations = [{
@@ -128,6 +129,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_11mft")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_4a3jp")
 
 [connection signal="pressed" from="Stuff/Cross/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="Stuff/BushExit/BushExitButton" to="." method="_on_bush_exit_button_pressed"]

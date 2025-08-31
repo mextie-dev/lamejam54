@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwx4dw2wquh8s"]
+[gd_scene load_steps=24 format=3 uid="uid://bwx4dw2wquh8s"]
 
 [ext_resource type="Script" uid="uid://crpw72vbtxvhl" path="res://scripts/satan_statue_screen.gd" id="1_jyi1n"]
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_qvvdc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://4j7hq2qlmcys" path="res://images/door_fr/door_fr1.png" id="9_awou6"]
 [ext_resource type="Texture2D" uid="uid://b06ttvbuerhom" path="res://images/door_fr/door_fr2.png" id="10_jyi1n"]
 [ext_resource type="Texture2D" uid="uid://6rjvtu1oo6wd" path="res://images/door_fr/door_fr3.png" id="11_2w2h4"]
+[ext_resource type="AudioStream" uid="uid://b0wnf6s623uwt" path="res://sounds/click item.mp3" id="16_p42g0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y3wfg"]
 animations = [{
@@ -206,6 +207,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_bsl67")
 }
 autoplay = "fadeIn"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_p42g0")
 
 [connection signal="pressed" from="Stuff/SatanStatue/SatanStatueButton" to="." method="offerToSatan"]
 [connection signal="pressed" from="Stuff/HellDoor/HellDoorButton" to="." method="_on_hell_door_button_pressed"]
