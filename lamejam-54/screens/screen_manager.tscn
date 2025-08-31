@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://norhu5mh05ax"]
+[gd_scene load_steps=20 format=3 uid="uid://norhu5mh05ax"]
 
 [ext_resource type="Script" uid="uid://cjxj5lmy3ix7b" path="res://screens/screen_manager.gd" id="1_4lin0"]
 [ext_resource type="PackedScene" uid="uid://1m3cftdxaq86" path="res://screens/title_screen.tscn" id="2_ewxhi"]
@@ -13,9 +13,36 @@
 [ext_resource type="PackedScene" uid="uid://cjbpuj050p8lr" path="res://screens/airport_entrance_screen.tscn" id="11_2ngdx"]
 [ext_resource type="PackedScene" uid="uid://bq16jm7e1k14w" path="res://screens/airport_screen.tscn" id="12_tx0jl"]
 [ext_resource type="PackedScene" uid="uid://2qu8yrr8r2xj" path="res://screens/bathroom_screen.tscn" id="13_tx0jl"]
+[ext_resource type="PackedScene" uid="uid://ccpjkpw4068ko" path="res://screens/plane_cutscene_screen.tscn" id="14_vw3v8"]
+[ext_resource type="PackedScene" uid="uid://dppohgfnd5s5y" path="res://screens/mountain_path_screen.tscn" id="15_qok7j"]
+[ext_resource type="Texture2D" uid="uid://bnbxh4j7sotqc" path="res://images/inventory_text_knife.png" id="16_7i4r2"]
+[ext_resource type="Texture2D" uid="uid://bgpsdya8cd2ow" path="res://images/inventory_text.png" id="16_opgj7"]
+[ext_resource type="Texture2D" uid="uid://bv8j6lb2bt4ra" path="res://images/goat/goat_head.png" id="18_ijwyf"]
+[ext_resource type="PackedScene" uid="uid://by2tmpu01vwst" path="res://screens/mountain_screen.tscn" id="19_ijwyf"]
 
 [node name="ScreenManager" type="Node2D"]
 script = ExtResource("1_4lin0")
+
+[node name="InventoryTextKnife" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="InventoryTextKnife"]
+texture = ExtResource("16_7i4r2")
+offset = Vector2(160, 195)
+
+[node name="InventoryTextGoatHead" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="InventoryTextGoatHead"]
+texture = ExtResource("16_opgj7")
+offset = Vector2(160, 195)
+
+[node name="Sprite2D2" type="Sprite2D" parent="InventoryTextGoatHead"]
+position = Vector2(120.000015, 214)
+scale = Vector2(0.33749998, 0.33749998)
+texture = ExtResource("18_ijwyf")
 
 [node name="TitleScreen" parent="." instance=ExtResource("2_ewxhi")]
 
@@ -52,6 +79,15 @@ visible = false
 [node name="BathroomScreen" parent="." instance=ExtResource("13_tx0jl")]
 visible = false
 
+[node name="PlaneCutsceneScreen" parent="." instance=ExtResource("14_vw3v8")]
+visible = false
+
+[node name="MountainPathScreen" parent="." instance=ExtResource("15_qok7j")]
+visible = false
+
+[node name="MountainScreen" parent="." instance=ExtResource("19_ijwyf")]
+visible = false
+
 [connection signal="start_game" from="TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="door_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_door_route"]
 [connection signal="ledge_route" from="LedgeDoorScreen" to="." method="_on_ledge_door_screen_ledge_route"]
@@ -67,6 +103,11 @@ visible = false
 [connection signal="exit_cutscene" from="CarCutsceneScreen" to="." method="_on_car_cutscene_screen_exit_cutscene"]
 [connection signal="airport_route" from="AirportEntranceScreen" to="." method="_on_airport_entrance_screen_airport_route"]
 [connection signal="bathroomdoor_route" from="AirportScreen" to="." method="_on_airport_screen_bathroomdoor_route"]
+[connection signal="plane_route" from="AirportScreen" to="." method="_on_airport_screen_plane_route"]
 [connection signal="toilet_route" from="BathroomScreen" to="." method="_on_bathroom_screen_toilet_route"]
+[connection signal="exit_cutscene" from="PlaneCutsceneScreen" to="." method="_on_plane_cutscene_screen_exit_cutscene"]
+[connection signal="rope_route" from="MountainPathScreen" to="." method="_on_mountain_path_screen_rope_route"]
+[connection signal="ladder_exit" from="MountainScreen" to="." method="_on_mountain_screen_ladder_exit"]
+[connection signal="pressed_goat" from="MountainScreen" to="." method="_on_mountain_screen_pressed_goat"]
 
 [editable path="TitleScreen"]

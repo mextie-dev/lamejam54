@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://dppohgfnd5s5y"]
+
+[ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_5k4hf"]
+[ext_resource type="Script" uid="uid://byps0n5vwula0" path="res://scripts/mountain_path_screen.gd" id="1_qwqqa"]
+[ext_resource type="Texture2D" uid="uid://c2k4tllkg8xre" path="res://images/mountainpath_frames/mountainpath_fr1.png" id="2_jlyvk"]
+[ext_resource type="Texture2D" uid="uid://bxbw1kdu4wrds" path="res://images/mountainpath_frames/mountainpath_fr2.png" id="3_qwqqa"]
+[ext_resource type="Texture2D" uid="uid://yngojryku1i" path="res://images/mountainpath_frames/mountainpath_fr3.png" id="4_05qig"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yt1yi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jlyvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qwqqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_05qig")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_qwqqa"]
+resource_name = "fadeIn"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_05qig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stuff:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yt1yi"]
+_data = {
+&"RESET": SubResource("Animation_05qig"),
+&"fadeIn": SubResource("Animation_qwqqa")
+}
+
+[node name="MountainPathScreen" type="Node2D"]
+script = ExtResource("1_qwqqa")
+
+[node name="YellowPaper" type="Sprite2D" parent="."]
+position = Vector2(160, 142)
+rotation = -0.08726646
+texture = ExtResource("1_5k4hf")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 120)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "planescreen
+"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="MountainPath" type="Node2D" parent="Stuff"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stuff/MountainPath"]
+sprite_frames = SubResource("SpriteFrames_yt1yi")
+autoplay = "default"
+offset = Vector2(160, 120)
+
+[node name="RopeButton" type="Button" parent="Stuff/MountainPath"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 151.0
+offset_right = 174.0
+offset_bottom = 147.0
+
+[node name="BushButton" type="Button" parent="Stuff/MountainPath"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 1.0
+offset_top = 142.0
+offset_right = 72.0
+offset_bottom = 188.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yt1yi")
+}
+autoplay = "fadeIn"
+
+[connection signal="pressed" from="Stuff/MountainPath/RopeButton" to="." method="_on_rope_button_pressed"]
+[connection signal="pressed" from="Stuff/MountainPath/BushButton" to="." method="_on_bush_button_pressed"]

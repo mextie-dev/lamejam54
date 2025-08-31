@@ -1,5 +1,9 @@
 extends Node2D
 
+@onready var inventory_text_knife: Node2D = $InventoryTextKnife
+@onready var inventory_text_goat_head: Node2D = $InventoryTextGoatHead
+
+
 @onready var title_screen: Node2D = $TitleScreen
 @onready var test_screen: Node2D = $TestScreen
 @onready var ledge_door_screen: Node2D = $LedgeDoorScreen
@@ -12,12 +16,14 @@ extends Node2D
 @onready var airport_entrance_screen: Node2D = $AirportEntranceScreen
 @onready var airport_screen: Node2D = $AirportScreen
 @onready var bathroom_screen: Node2D = $BathroomScreen
-
-
+@onready var plane_cutscene_screen: Node2D = $PlaneCutsceneScreen
+@onready var mountain_path_screen: Node2D = $MountainPathScreen
+@onready var mountain_screen: Node2D = $MountainScreen
 
 var run := false
 
 var hasKnife := false
+var hasHead := false
 
 
 var upwards := 0
@@ -36,12 +42,18 @@ func _ready() -> void:
 	airport_entrance_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	bathroom_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	
 	pass
 
 func _process(delta: float) -> void:
-	#print(hasKnife)
+	
+	if hasKnife:
+		print("hasKnife")
+		inventory_text_knife.visible = true
 	pass
 
 
@@ -195,3 +207,46 @@ func _on_sewer_screen_ventexit_route() -> void:
 	table_chair_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	table_chair_screen.visible = true
 	downwards += 1
+
+
+func _on_plane_cutscene_screen_exit_cutscene() -> void:
+	$MountainPathScreen/AnimationPlayer.play("fadeIn")
+	plane_cutscene_screen.visible = false
+	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	mountain_path_screen.visible = true
+
+
+func _on_airport_screen_plane_route() -> void:
+	#$BathroomScreen/AnimationPlayer.play("fadeIn")
+	airport_screen.visible = false
+	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	plane_cutscene_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	plane_cutscene_screen.visible = true
+
+
+func _on_mountain_screen_ladder_exit() -> void:
+	$MountainPathScreen/AnimationPlayer.play("fadeIn")
+	mountain_screen.visible = false
+	mountain_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	mountain_path_screen.visible = true
+
+
+func _on_mountain_screen_pressed_goat() -> void:
+	if hasKnife:
+		$MountainScreen/Stuff/Goat/AnimatedSprite2D.frame = 1
+		hasKnife = false
+		inventory_text_knife.hide()
+		hasHead = true
+		inventory_text_goat_head.show()
+	else:
+		pass # TODO make goat baa my name is ralsei im a baa
+
+
+func _on_mountain_path_screen_rope_route() -> void:
+	$MountainScreen/AnimationPlayer.play("fadeIn")
+	mountain_path_screen.visible = false
+	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
+	mountain_screen.process_mode = Node.PROCESS_MODE_INHERIT
+	mountain_screen.visible = true
