@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var cursor: Node2D = $Cursor
 
+@onready var game_ost: AudioStreamPlayer2D = $GameOst
 
 @onready var title_screen: Node2D = $TitleScreen
 @onready var test_screen: Node2D = $TestScreen
@@ -386,3 +387,7 @@ func _on_mountain_path_screen_bush_route() -> void:
 	mountain_path_screen.process_mode = Node.PROCESS_MODE_DISABLED
 	bush_screen.process_mode = Node.PROCESS_MODE_INHERIT
 	bush_screen.visible = true
+
+
+func _on_game_ost_finished() -> void:
+	game_ost.play()
