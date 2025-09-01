@@ -46,7 +46,7 @@ func _on_down_3_pressed() -> void:
 
 func _on_check_button_pressed() -> void:
 	$Click.play()
-	if number_1.frame == 0 && number_2.frame == 3 && number_3.frame == 0:
+	if number_1.frame == 0 && number_2.frame == 1 && number_3.frame == 8:
 		print("right code")
 		right_code.emit()
 	else:
