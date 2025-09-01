@@ -244,7 +244,7 @@ func _on_plane_cutscene_screen_exit_cutscene() -> void:
 
 
 func _on_airport_screen_plane_route() -> void:
-	$PlaneCutsceneScreen/AnimationPlayer.play("fadeIn")
+	$PlaneCutsceneScreen/AnimationPlayer.play("flyPlane")
 	plane_cutscene_screen.exitingArea = 0
 	airport_screen.visible = false
 	airport_screen.process_mode = Node.PROCESS_MODE_DISABLED

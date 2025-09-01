@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b5t6ykmlut777"]
+[gd_scene load_steps=27 format=3 uid="uid://b5t6ykmlut777"]
 
 [ext_resource type="Texture2D" uid="uid://djwj3gm4ydyet" path="res://images/yellow_paper.png" id="1_mbkr7"]
 [ext_resource type="Texture2D" uid="uid://benl1012eo3hb" path="res://images/ending2_frames/ending2_fr1.png" id="2_mbkr7"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://4k7rhh884gke" path="res://images/ending1_frames/thankyou_fr1.png" id="14_c21is"]
 [ext_resource type="Texture2D" uid="uid://bh1lpaumto6m4" path="res://images/ending1_frames/thankyou_fr2.png" id="15_732pw"]
 [ext_resource type="Texture2D" uid="uid://d1teqomalfuvg" path="res://images/ending1_frames/thankyou_fr3.png" id="16_pl5mh"]
+[ext_resource type="Texture2D" uid="uid://bjrec1vg7f3fs" path="res://images/goat/goat.png" id="17_bfpet"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rufm5"]
 animations = [{
@@ -259,6 +260,12 @@ text = "planescreen
 "
 
 [node name="Stuff" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Stuff"]
+position = Vector2(184, 203)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("17_bfpet")
+offset = Vector2(313.455, 24.865)
 
 [node name="Ending2ReachedHeaven" type="Node2D" parent="Stuff"]
 
